@@ -14,6 +14,14 @@
 		19D56EE22C2B1A7300AA6811 /* WakyZzzSwifUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EE12C2B1A7300AA6811 /* WakyZzzSwifUITests.swift */; };
 		19D56EEC2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */; };
 		19D56EEE2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */; };
+		19D56EFB2C2B1AC300AA6811 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19D56EFA2C2B1AC300AA6811 /* sound.mp3 */; };
+		19D56EFF2C2B1B6B00AA6811 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */; };
+		19D56F012C2B1B9100AA6811 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F002C2B1B9100AA6811 /* Action.swift */; };
+		19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F022C2B1BB900AA6811 /* AlarmsView.swift */; };
+		19D56F052C2B1BD800AA6811 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F042C2B1BD800AA6811 /* AddAlarmView.swift */; };
+		19D56F072C2B44AC00AA6811 /* EditAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */; };
+		19D56F0A2C2B4EF400AA6811 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F092C2B4EF400AA6811 /* AlarmManager.swift */; };
+		19D56F0C2C2B540000AA6811 /* RandomActOfKindnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		19D56EE72C2B1A7300AA6811 /* WakyZzzSwifUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakyZzzSwifUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIUITests.swift; sourceTree = "<group>"; };
 		19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		19D56EFA2C2B1AC300AA6811 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
+		19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		19D56F002C2B1B9100AA6811 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		19D56F022C2B1BB900AA6811 /* AlarmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsView.swift; sourceTree = "<group>"; };
+		19D56F042C2B1BD800AA6811 /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
+		19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmView.swift; sourceTree = "<group>"; };
+		19D56F092C2B4EF400AA6811 /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
+		19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActOfKindnessView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +110,12 @@
 		19D56ECF2C2B1A7100AA6811 /* WakyZzzSwifUI */ = {
 			isa = PBXGroup;
 			children = (
+				19D56EFA2C2B1AC300AA6811 /* sound.mp3 */,
 				19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */,
 				19D56ED22C2B1A7100AA6811 /* ContentView.swift */,
+				19D56EFD2C2B1B5300AA6811 /* Views */,
+				19D56F082C2B45C100AA6811 /* Managers */,
+				19D56EFC2C2B1B4300AA6811 /* Model */,
 				19D56ED42C2B1A7300AA6811 /* Assets.xcassets */,
 				19D56ED62C2B1A7300AA6811 /* Preview Content */,
 			);
@@ -125,6 +145,34 @@
 				19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */,
 			);
 			path = WakyZzzSwifUIUITests;
+			sourceTree = "<group>";
+		};
+		19D56EFC2C2B1B4300AA6811 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */,
+				19D56F002C2B1B9100AA6811 /* Action.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		19D56EFD2C2B1B5300AA6811 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F022C2B1BB900AA6811 /* AlarmsView.swift */,
+				19D56F042C2B1BD800AA6811 /* AddAlarmView.swift */,
+				19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */,
+				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19D56F082C2B45C100AA6811 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F092C2B4EF400AA6811 /* AlarmManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */,
+				19D56EFB2C2B1AC300AA6811 /* sound.mp3 in Resources */,
 				19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +307,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D56ED32C2B1A7100AA6811 /* ContentView.swift in Sources */,
+				19D56F012C2B1B9100AA6811 /* Action.swift in Sources */,
+				19D56F0C2C2B540000AA6811 /* RandomActOfKindnessView.swift in Sources */,
+				19D56F072C2B44AC00AA6811 /* EditAlarmView.swift in Sources */,
+				19D56F052C2B1BD800AA6811 /* AddAlarmView.swift in Sources */,
 				19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */,
+				19D56F0A2C2B4EF400AA6811 /* AlarmManager.swift in Sources */,
+				19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */,
+				19D56EFF2C2B1B6B00AA6811 /* Alarm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
