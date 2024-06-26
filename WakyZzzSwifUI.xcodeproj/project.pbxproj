@@ -22,6 +22,7 @@
 		19D56F072C2B44AC00AA6811 /* EditAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */; };
 		19D56F0A2C2B4EF400AA6811 /* AlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F092C2B4EF400AA6811 /* AlarmManager.swift */; };
 		19D56F0C2C2B540000AA6811 /* RandomActOfKindnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */; };
+		19D56F272C2C614900AA6811 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 19D56F262C2C614900AA6811 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmView.swift; sourceTree = "<group>"; };
 		19D56F092C2B4EF400AA6811 /* AlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmManager.swift; sourceTree = "<group>"; };
 		19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActOfKindnessView.swift; sourceTree = "<group>"; };
+		19D56F262C2C614900AA6811 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		19D56F2A2C2C793E00AA6811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 		19D56EC42C2B1A7100AA6811 = {
 			isa = PBXGroup;
 			children = (
+				19D56F262C2C614900AA6811 /* .gitignore */,
 				19D56ECF2C2B1A7100AA6811 /* WakyZzzSwifUI */,
 				19D56EE02C2B1A7300AA6811 /* WakyZzzSwifUITests */,
 				19D56EEA2C2B1A7300AA6811 /* WakyZzzSwifUIUITests */,
@@ -110,6 +114,7 @@
 		19D56ECF2C2B1A7100AA6811 /* WakyZzzSwifUI */ = {
 			isa = PBXGroup;
 			children = (
+				19D56F2A2C2C793E00AA6811 /* Info.plist */,
 				19D56EFA2C2B1AC300AA6811 /* sound.mp3 */,
 				19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */,
 				19D56ED22C2B1A7100AA6811 /* ContentView.swift */,
@@ -279,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19D56F272C2C614900AA6811 /* .gitignore in Resources */,
 				19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */,
 				19D56EFB2C2B1AC300AA6811 /* sound.mp3 in Resources */,
 				19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */,
@@ -481,6 +487,7 @@
 				DEVELOPMENT_TEAM = 6WAA8E6R87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WakyZzzSwifUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -510,6 +517,7 @@
 				DEVELOPMENT_TEAM = 6WAA8E6R87;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WakyZzzSwifUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct AlarmsView: View {
     @State private var alarms: [Alarm] = []
     @State private var showingAddAlarmView = false
@@ -71,7 +69,7 @@ struct AlarmsView: View {
     
     private func scheduleTestAlarm() {
         let now = Date()
-        let testAlarmTime = Calendar.current.date(byAdding: .minute, value: 2, to: now) ?? now
+        let testAlarmTime = Calendar.current.date(byAdding: .minute, value: 1, to: now) ?? now
         let testAlarm = Alarm(time: testAlarmTime, repeatDays: [], isEnabled: true)
         alarms.append(testAlarm)
         AlarmManager.shared.addAlarm(testAlarm)
