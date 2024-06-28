@@ -8,66 +8,53 @@
 import SwiftUI
 
 struct AddAlarmView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var alarms: [Alarm]
-    @State private var time: Date = {
-        var components = DateComponents()
-        components.hour = 8
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date()
-    }()
-    
-    @State private var repeatDays: [String] = []
-    @State private var isEnabled: Bool = true
-    
+    @ObservedObject var viewModel: AddAlarmViewModel
+
+    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>) {
+        self.viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented)
+    }
+
     var body: some View {
         NavigationView {
             Form {
-                DatePicker("Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
-                
+                DatePicker("Alarm Time", selection: $viewModel.time, displayedComponents: .hourAndMinute)
+
                 Section(header: Text("Repeat")) {
                     ForEach(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], id: \.self) { day in
                         Toggle(day, isOn: Binding(
-                            get: { self.repeatDays.contains(day) },
+                            get: { self.viewModel.repeatDays.contains(day) },
                             set: { newValue in
                                 if newValue {
-                                    self.repeatDays.append(day)
+                                    self.viewModel.repeatDays.append(day)
                                 } else {
-                                    self.repeatDays.removeAll { $0 == day }
+                                    self.viewModel.repeatDays.removeAll { $0 == day }
                                 }
                             }
                         ))
                     }
                 }
-                
-                Toggle(isOn: $isEnabled) {
-                    Text("Enabled")
+
+                Toggle(isOn: $viewModel.isEnabled) {
+                    Text(viewModel.isEnabled ? "Enabled" : "Disabled")
                 }
-                
+
                 Button("Add Alarm") {
-                    let newAlarm = Alarm(time: time, repeatDays: repeatDays, isEnabled: isEnabled, snoozeCount: 0)
-                    alarms.append(newAlarm)
-                    AlarmManager.shared.addAlarm(newAlarm)
-                    sortAlarms()
-                    presentationMode.wrappedValue.dismiss()
+                    viewModel.addAlarm()
                 }
             }
             .navigationTitle("Add Alarm")
             .navigationBarItems(trailing: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
+                viewModel.cancel()
             })
         }
-    }
-    
-    private func sortAlarms() {
-        alarms.sort { $0.time < $1.time }
     }
 }
 
 struct AddAlarmView_Previews: PreviewProvider {
     @State static var alarms: [Alarm] = []
+    @State static var isPresented = true
 
     static var previews: some View {
-        AddAlarmView(alarms: $alarms)
+        AddAlarmView(alarms: $alarms, isPresented: $isPresented)
     }
 }

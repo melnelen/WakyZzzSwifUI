@@ -18,11 +18,22 @@ struct Alarm: Identifiable, Codable, Equatable {
     var isEnabled: Bool
     var snoozeCount: Int
     
-    init(id: UUID = UUID(), time: Date, repeatDays: [String] = [], isEnabled: Bool = true, snoozeCount: Int = 0) {
+    init(id: UUID = UUID(), time: Date = Date(), repeatDays: [String] = [], isEnabled: Bool = true, snoozeCount: Int = 0) {
         self.id = id
-        self.time = time
         self.repeatDays = repeatDays
         self.isEnabled = isEnabled
         self.snoozeCount = snoozeCount
+        
+        // Set default time to 8 AM the next day if the provided time is invalid
+        if time <= Date.distantPast {
+            var components = DateComponents()
+            components.hour = 8
+            components.minute = 0
+            var defaultTime = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+            defaultTime = Calendar.current.nextDate(after: defaultTime, matching: components, matchingPolicy: .nextTime) ?? defaultTime
+            self.time = defaultTime
+        } else {
+            self.time = time
+        }
     }
 }

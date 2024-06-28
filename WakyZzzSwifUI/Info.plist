@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>We would like to send you notifications to check-in with your tasks progress.</string>
+	<string>We would like to send you notifications to start the alarms.</string>
 </dict>
 </plist>

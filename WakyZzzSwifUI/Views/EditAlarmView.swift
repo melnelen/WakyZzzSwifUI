@@ -9,49 +9,42 @@ import SwiftUI
 
 struct EditAlarmView: View {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var alarms: [Alarm]
-    @State private var alarm: Alarm
+    @ObservedObject var viewModel: EditAlarmViewModel
     
-    @State private var time: Date
-    @State private var repeatDays: [String]
-    @State private var isEnabled: Bool
-    
-    init(alarms: Binding<[Alarm]>, alarm: Alarm) {
-        self._alarms = alarms
-        self._alarm = State(initialValue: alarm)
-        self._time = State(initialValue: alarm.time)
-        self._repeatDays = State(initialValue: alarm.repeatDays)
-        self._isEnabled = State(initialValue: alarm.isEnabled)
+    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationDelegate: NotificationDelegate) {
+        self.viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, notificationDelegate: notificationDelegate)
     }
     
     var body: some View {
         NavigationView {
             Form {
-                DatePicker("Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
+                DatePicker("Alarm Time", selection: $viewModel.time, displayedComponents: .hourAndMinute)
+                    .onChange(of: viewModel.time) { _, newValue in
+                        print("DatePicker changed time to: \(newValue)")
+                    }
                 
                 Section(header: Text("Repeat")) {
                     ForEach(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], id: \.self) { day in
                         Toggle(day, isOn: Binding(
-                            get: { self.repeatDays.contains(day) },
+                            get: { self.viewModel.repeatDays.contains(day) },
                             set: { newValue in
                                 if newValue {
-                                    self.repeatDays.append(day)
+                                    self.viewModel.repeatDays.append(day)
                                 } else {
-                                    self.repeatDays.removeAll { $0 == day }
+                                    self.viewModel.repeatDays.removeAll { $0 == day }
                                 }
                             }
                         ))
                     }
                 }
                 
-                Toggle(isOn: $isEnabled) {
-                    Text("Enabled")
+                Toggle(isOn: $viewModel.isEnabled) {
+                    Text(viewModel.isEnabled ? "Enabled" : "Disabled")
                 }
                 
                 Button("Save Changes") {
-                    saveChanges()
-                    sortAlarms()
-                    AlarmManager.shared.updateAlarm(alarm)
+                    print("Before saving, time: \(viewModel.time)")
+                    viewModel.saveChanges()
                     presentationMode.wrappedValue.dismiss()
                 }
             }
@@ -61,19 +54,6 @@ struct EditAlarmView: View {
             })
         }
     }
-    
-    private func saveChanges() {
-        if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
-            alarms[index].time = time
-            alarms[index].repeatDays = repeatDays
-            alarms[index].isEnabled = isEnabled
-            alarms[index].snoozeCount = 0 // Reset snooze count on save
-        }
-    }
-    
-    private func sortAlarms() {
-        alarms.sort { $0.time < $1.time }
-    }
 }
 
 struct EditAlarmView_Previews: PreviewProvider {
@@ -81,6 +61,6 @@ struct EditAlarmView_Previews: PreviewProvider {
         Alarm(time: Date())
     ]
     static var previews: some View {
-        EditAlarmView(alarms: $alarms, alarm: alarms[0])
+        EditAlarmView(alarms: $alarms, alarm: alarms[0], notificationDelegate: NotificationDelegate())
     }
 }
