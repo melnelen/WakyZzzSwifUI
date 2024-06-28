@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */; };
-		19D56ED32C2B1A7100AA6811 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ED22C2B1A7100AA6811 /* ContentView.swift */; };
 		19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED42C2B1A7300AA6811 /* Assets.xcassets */; };
 		19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED72C2B1A7300AA6811 /* Preview Assets.xcassets */; };
 		19D56EE22C2B1A7300AA6811 /* WakyZzzSwifUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EE12C2B1A7300AA6811 /* WakyZzzSwifUITests.swift */; };
@@ -24,10 +23,19 @@
 		19D56F0C2C2B540000AA6811 /* RandomActOfKindnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */; };
 		19D56F272C2C614900AA6811 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 19D56F262C2C614900AA6811 /* .gitignore */; };
 		19D74AB02C2EA4B3000D32FE /* EditAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AAF2C2EA4B3000D32FE /* EditAlarmViewModel.swift */; };
-		19D74AB22C2EEB24000D32FE /* AlarmRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB12C2EEB24000D32FE /* AlarmRow.swift */; };
+		19D74AB22C2EEB24000D32FE /* AlarmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB12C2EEB24000D32FE /* AlarmRowView.swift */; };
 		19D74AB42C2EEECA000D32FE /* AlarmRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB32C2EEECA000D32FE /* AlarmRowViewModel.swift */; };
 		19D74AB62C2EFD16000D32FE /* AlarmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB52C2EFD16000D32FE /* AlarmsViewModel.swift */; };
 		19D74AB82C2F09C3000D32FE /* AddAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB72C2F09C3000D32FE /* AddAlarmViewModel.swift */; };
+		19D74ABA2C2F3FC6000D32FE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB92C2F3FC6000D32FE /* NotificationDelegate.swift */; };
+		19D74ABC2C2F4227000D32FE /* NavigationBarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74ABB2C2F4227000D32FE /* NavigationBarButtonsView.swift */; };
+		19D74ABE2C2F42E3000D32FE /* AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74ABD2C2F42E3000D32FE /* AlarmListView.swift */; };
+		19D74AC42C2F4BDB000D32FE /* AlarmTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AC32C2F4BDB000D32FE /* AlarmTimePickerView.swift */; };
+		19D74ACA2C2F500C000D32FE /* AlarmToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AC92C2F500C000D32FE /* AlarmToggleView.swift */; };
+		19D74ACC2C2F50D9000D32FE /* AddAlarmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74ACB2C2F50D9000D32FE /* AddAlarmButton.swift */; };
+		19D74AD12C2F5EDC000D32FE /* RepeatDaysSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD02C2F5EDC000D32FE /* RepeatDaysSectionView.swift */; };
+		19D74AD32C2F630D000D32FE /* SaveChangesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */; };
+		19D74AD52C2F638C000D32FE /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD42C2F638C000D32FE /* CancelButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +58,6 @@
 /* Begin PBXFileReference section */
 		19D56ECD2C2B1A7100AA6811 /* WakyZzzSwifUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakyZzzSwifUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIApp.swift; sourceTree = "<group>"; };
-		19D56ED22C2B1A7100AA6811 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		19D56ED42C2B1A7300AA6811 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19D56ED72C2B1A7300AA6811 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		19D56EDD2C2B1A7300AA6811 /* WakyZzzSwifUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakyZzzSwifUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,10 +76,19 @@
 		19D56F262C2C614900AA6811 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		19D56F2A2C2C793E00AA6811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19D74AAF2C2EA4B3000D32FE /* EditAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlarmViewModel.swift; sourceTree = "<group>"; };
-		19D74AB12C2EEB24000D32FE /* AlarmRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRow.swift; sourceTree = "<group>"; };
+		19D74AB12C2EEB24000D32FE /* AlarmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRowView.swift; sourceTree = "<group>"; };
 		19D74AB32C2EEECA000D32FE /* AlarmRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRowViewModel.swift; sourceTree = "<group>"; };
 		19D74AB52C2EFD16000D32FE /* AlarmsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsViewModel.swift; sourceTree = "<group>"; };
 		19D74AB72C2F09C3000D32FE /* AddAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewModel.swift; sourceTree = "<group>"; };
+		19D74AB92C2F3FC6000D32FE /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		19D74ABB2C2F4227000D32FE /* NavigationBarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarButtonsView.swift; sourceTree = "<group>"; };
+		19D74ABD2C2F42E3000D32FE /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListView.swift; sourceTree = "<group>"; };
+		19D74AC32C2F4BDB000D32FE /* AlarmTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimePickerView.swift; sourceTree = "<group>"; };
+		19D74AC92C2F500C000D32FE /* AlarmToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmToggleView.swift; sourceTree = "<group>"; };
+		19D74ACB2C2F50D9000D32FE /* AddAlarmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmButton.swift; sourceTree = "<group>"; };
+		19D74AD02C2F5EDC000D32FE /* RepeatDaysSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSectionView.swift; sourceTree = "<group>"; };
+		19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveChangesButton.swift; sourceTree = "<group>"; };
+		19D74AD42C2F638C000D32FE /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,9 +143,11 @@
 				19D56F2A2C2C793E00AA6811 /* Info.plist */,
 				19D56EFA2C2B1AC300AA6811 /* sound.mp3 */,
 				19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */,
-				19D56ED22C2B1A7100AA6811 /* ContentView.swift */,
 				19D56EFD2C2B1B5300AA6811 /* Views */,
+				19D74AC52C2F4BF6000D32FE /* ReusableViews */,
+				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
 				19D56F082C2B45C100AA6811 /* ViewModel */,
+				19D74AC82C2F4D7D000D32FE /* Services */,
 				19D56EFC2C2B1B4300AA6811 /* Model */,
 				19D56ED42C2B1A7300AA6811 /* Assets.xcassets */,
 				19D56ED62C2B1A7300AA6811 /* Preview Content */,
@@ -174,11 +192,9 @@
 		19D56EFD2C2B1B5300AA6811 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				19D56F022C2B1BB900AA6811 /* AlarmsView.swift */,
-				19D74AB12C2EEB24000D32FE /* AlarmRow.swift */,
-				19D56F042C2B1BD800AA6811 /* AddAlarmView.swift */,
-				19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */,
-				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
+				19D74AC12C2F49D1000D32FE /* AlarmsView */,
+				19D74AC22C2F4A28000D32FE /* AddAlarmView */,
+				19D74ACF2C2F5CBD000D32FE /* EditAlarmView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,9 +206,57 @@
 				19D74AB32C2EEECA000D32FE /* AlarmRowViewModel.swift */,
 				19D74AB72C2F09C3000D32FE /* AddAlarmViewModel.swift */,
 				19D74AAF2C2EA4B3000D32FE /* EditAlarmViewModel.swift */,
-				19D56F092C2B4EF400AA6811 /* AlarmManager.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		19D74AC12C2F49D1000D32FE /* AlarmsView */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F022C2B1BB900AA6811 /* AlarmsView.swift */,
+				19D74ABB2C2F4227000D32FE /* NavigationBarButtonsView.swift */,
+				19D74ABD2C2F42E3000D32FE /* AlarmListView.swift */,
+				19D74AB12C2EEB24000D32FE /* AlarmRowView.swift */,
+			);
+			path = AlarmsView;
+			sourceTree = "<group>";
+		};
+		19D74AC22C2F4A28000D32FE /* AddAlarmView */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F042C2B1BD800AA6811 /* AddAlarmView.swift */,
+				19D74ACB2C2F50D9000D32FE /* AddAlarmButton.swift */,
+			);
+			path = AddAlarmView;
+			sourceTree = "<group>";
+		};
+		19D74AC52C2F4BF6000D32FE /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				19D74AC32C2F4BDB000D32FE /* AlarmTimePickerView.swift */,
+				19D74AD02C2F5EDC000D32FE /* RepeatDaysSectionView.swift */,
+				19D74AC92C2F500C000D32FE /* AlarmToggleView.swift */,
+				19D74AD42C2F638C000D32FE /* CancelButton.swift */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		19D74AC82C2F4D7D000D32FE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F092C2B4EF400AA6811 /* AlarmManager.swift */,
+				19D74AB92C2F3FC6000D32FE /* NotificationDelegate.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		19D74ACF2C2F5CBD000D32FE /* EditAlarmView */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */,
+				19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */,
+			);
+			path = EditAlarmView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,18 +391,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D56ED32C2B1A7100AA6811 /* ContentView.swift in Sources */,
 				19D56F012C2B1B9100AA6811 /* Action.swift in Sources */,
+				19D74ACC2C2F50D9000D32FE /* AddAlarmButton.swift in Sources */,
+				19D74AD32C2F630D000D32FE /* SaveChangesButton.swift in Sources */,
 				19D74AB82C2F09C3000D32FE /* AddAlarmViewModel.swift in Sources */,
+				19D74ABE2C2F42E3000D32FE /* AlarmListView.swift in Sources */,
 				19D74AB62C2EFD16000D32FE /* AlarmsViewModel.swift in Sources */,
-				19D74AB22C2EEB24000D32FE /* AlarmRow.swift in Sources */,
+				19D74ACA2C2F500C000D32FE /* AlarmToggleView.swift in Sources */,
+				19D74AB22C2EEB24000D32FE /* AlarmRowView.swift in Sources */,
 				19D74AB02C2EA4B3000D32FE /* EditAlarmViewModel.swift in Sources */,
 				19D56F0C2C2B540000AA6811 /* RandomActOfKindnessView.swift in Sources */,
+				19D74AD52C2F638C000D32FE /* CancelButton.swift in Sources */,
 				19D56F072C2B44AC00AA6811 /* EditAlarmView.swift in Sources */,
 				19D56F052C2B1BD800AA6811 /* AddAlarmView.swift in Sources */,
 				19D74AB42C2EEECA000D32FE /* AlarmRowViewModel.swift in Sources */,
 				19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */,
 				19D56F0A2C2B4EF400AA6811 /* AlarmManager.swift in Sources */,
+				19D74AD12C2F5EDC000D32FE /* RepeatDaysSectionView.swift in Sources */,
+				19D74ABA2C2F3FC6000D32FE /* NotificationDelegate.swift in Sources */,
+				19D74ABC2C2F4227000D32FE /* NavigationBarButtonsView.swift in Sources */,
+				19D74AC42C2F4BDB000D32FE /* AlarmTimePickerView.swift in Sources */,
 				19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */,
 				19D56EFF2C2B1B6B00AA6811 /* Alarm.swift in Sources */,
 			);

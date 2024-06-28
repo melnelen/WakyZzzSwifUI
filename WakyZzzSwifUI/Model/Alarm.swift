@@ -36,4 +36,15 @@ struct Alarm: Identifiable, Codable, Equatable {
             self.time = time
         }
     }
+    
+    static var example: Alarm {
+            let calendar = Calendar.current
+            var components = DateComponents()
+            components.hour = 8
+            components.minute = 0
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: Date())!
+            let alarmTime = calendar.date(bySettingHour: 8, minute: 0, second: 0, of: tomorrow)!
+            
+            return Alarm(time: alarmTime, repeatDays: ["Monday", "Wednesday", "Friday"], isEnabled: true, snoozeCount: 0)
+        }
 }

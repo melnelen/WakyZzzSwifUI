@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AlarmsView: View {
     @StateObject private var viewModel: AlarmsViewModel
-
+    
     init(notificationDelegate: NotificationDelegate) {
         _viewModel = StateObject(wrappedValue: AlarmsViewModel(notificationDelegate: notificationDelegate))
     }
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -22,7 +22,9 @@ struct AlarmsView: View {
                         self.viewModel.selectedAlarm = alarm
                         self.viewModel.showingEditAlarmView = true
                     }) {
-                        AlarmRow(viewModel: AlarmRowViewModel(alarm: alarm))
+                        AlarmRowView(alarm: alarm) { isEnabled in
+                            viewModel.toggleEnabled(for: alarm, isEnabled: isEnabled)
+                        }
                     }
                 }
                 .onDelete(perform: viewModel.deleteAlarm)
@@ -47,25 +49,13 @@ struct AlarmsView: View {
                 EditAlarmView(alarms: $viewModel.alarmManager.alarms, alarm: alarm, notificationDelegate: viewModel.notificationDelegate)
             }
             .alert(isPresented: $viewModel.showingAlarmAlert) {
-                Alert(
-                    title: Text("Alarm"),
-                    message: Text("Time to wake up!"),
-                    primaryButton: .default(Text("Snooze")) {
-                        if let alarmID = viewModel.activeAlarmID, let alarm = viewModel.alarmManager.alarms.first(where: { $0.id.uuidString == alarmID }) {
-                            viewModel.snoozeAlarm(alarm: alarm)
-                        }
-                        viewModel.activeAlarmID = nil
-                    },
-                    secondaryButton: .cancel()
-                )
+                viewModel.alarmAlert
             }
         }
     }
 }
 
-struct AlarmsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlarmsView(notificationDelegate: NotificationDelegate())
-            .environmentObject(NotificationDelegate())
-    }
+#Preview {
+    AlarmsView(notificationDelegate: NotificationDelegate())
+        .environmentObject(NotificationDelegate())
 }
