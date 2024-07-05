@@ -101,25 +101,31 @@ class AlarmManager: ObservableObject {
         scheduleAlarm(alarm: alarm)
     }
     
-    func snoozeAlarm(alarm: Alarm) {
+    func snoozeAlarm(alarm: Alarm, completion: @escaping (Bool) -> Void) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index].snoozeCount += 1
-        }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Snooze Alarm"
-        content.body = "Time to wake up!"
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "ALARM_CATEGORY"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
-        let request = UNNotificationRequest(identifier: "\(alarm.id)-snooze", content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error scheduling snooze alarm: \(error)")
+            
+            if alarms[index].snoozeCount > 2 {
+                playEvilSound(alarm: alarms[index])
+                completion(true)
             } else {
-                print("Snooze alarm scheduled with identifier: \(alarm.id)-snooze")
+                let content = UNMutableNotificationContent()
+                content.title = "Snooze Alarm"
+                content.body = "Time to wake up!"
+                content.sound = UNNotificationSound.default
+                content.categoryIdentifier = "ALARM_CATEGORY"
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false) // Change time interval for tests
+                let request = UNNotificationRequest(identifier: "\(alarm.id)", content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("Error scheduling snooze alarm: \(error)")
+                    } else {
+                        print("Snooze alarm scheduled with identifier: \(alarm.id)")
+                    }
+                }
+                completion(false)
             }
         }
     }
@@ -150,7 +156,7 @@ class AlarmManager: ObservableObject {
         let content = UNMutableNotificationContent()
         content.title = "Evil Alarm"
         content.body = "You must complete a random act of kindness to turn off this alarm."
-        content.sound = UNNotificationSound(named: UNNotificationSoundName("evil_alarm_sound.mp3"))
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("sound"))
         content.categoryIdentifier = "ALARM_CATEGORY"
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -164,20 +170,13 @@ class AlarmManager: ObservableObject {
             }
         }
         
-        // Present Random Act of Kindness View
-        if let randomTask = randomActsOfKindness.randomElement() {
-            DispatchQueue.main.async {
-                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                   let window = windowScene.windows.first {
-                    let rootViewController = window.rootViewController
-                    let view = UIHostingController(rootView: RandomActOfKindnessView(showingView: .constant(true), task: randomTask))
-                    rootViewController?.present(view, animated: true, completion: nil)
-                }
-            }
+        // Present Random Act of Kindness Alert
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
         }
     }
     
-    private let randomActsOfKindness: [String] = [
+    let randomActsOfKindness: [String] = [
         "Message a friend asking how they are doing",
         "Connect with a family member by expressing a kind thought",
         "Compliment a colleague on their work",

@@ -15,6 +15,8 @@ class AlarmsViewModel: ObservableObject {
     @Published var showingEditAlarmView = false
     @Published var showingAlarmAlert = false
     @Published var activeAlarmID: String?
+    @Published var showRandomActOfKindness = false
+    @Published var randomActTask = "Do something kind!"
     
     var notificationDelegate: NotificationDelegate
     
@@ -27,6 +29,10 @@ class AlarmsViewModel: ObservableObject {
                 self.showingAlarmAlert = true
             }
         }
+        NotificationCenter.default.addObserver(forName: Notification.Name("ShowRandomActOfKindnessAlert"), object: nil, queue: .main) { notification in
+            self.randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+            self.showRandomActOfKindness = true
+        }
     }
     
     func deleteAlarm(at offsets: IndexSet) {
@@ -38,34 +44,17 @@ class AlarmsViewModel: ObservableObject {
     
     func scheduleTestAlarm() {
         let now = Date()
-        let testAlarmTime = Calendar.current.date(byAdding: .minute, value: 1, to: now) ?? now
+        let testAlarmTime = Calendar.current.date(byAdding: .second, value: 1, to: now) ?? now
         let testAlarm = Alarm(time: testAlarmTime, repeatDays: [], isEnabled: true)
         alarmManager.addAlarm(testAlarm)
-        print("Scheduled test alarm for 1 minute later with ID: \(testAlarm.id)")
-        
-        // Trigger an immediate notification for testing purposes
-        triggerImmediateNotification(for: testAlarm)
+        print("Scheduled test alarm for 1 second later with ID: \(testAlarm.id)")
     }
     
     func snoozeAlarm(alarm: Alarm) {
-        alarmManager.snoozeAlarm(alarm: alarm)
-    }
-    
-    private func triggerImmediateNotification(for alarm: Alarm) {
-        let content = UNMutableNotificationContent()
-        content.title = "Alarm"
-        content.body = "Time to wake up!"
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "ALARM_CATEGORY"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: "\(alarm.id)", content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error scheduling immediate test alarm: \(error)")
-            } else {
-                print("Immediate test alarm scheduled with identifier: \(alarm.id)")
+        alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
+            if showKindness {
+                self.randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+                self.showRandomActOfKindness = true
             }
         }
     }
@@ -78,13 +67,25 @@ class AlarmsViewModel: ObservableObject {
                 if let alarmID = self.activeAlarmID, let alarm = self.alarmManager.alarms.first(where: { $0.id.uuidString == alarmID }) {
                     self.snoozeAlarm(alarm: alarm)
                 }
-                self.activeAlarmID = nil
             },
-            secondaryButton: .cancel()
+            secondaryButton: .cancel(Text("Stop")) {
+                if let alarmID = self.activeAlarmID, let _ = self.alarmManager.alarms.first(where: { $0.id.uuidString == alarmID }) {
+                    self.activeAlarmID = nil
+                }
+            }
         )
     }
     
-    // Methods from AlarmRowViewModel
+    var randomActOfKindnessAlert: Alert {
+        Alert(
+            title: Text("Random Act of Kindness"),
+            message: Text(self.randomActTask),
+            dismissButton: .default(Text("OK")) {
+                self.showRandomActOfKindness = false
+            }
+        )
+    }
+    
     func toggleEnabled(for alarm: Alarm, isEnabled: Bool) {
         var updatedAlarm = alarm
         updatedAlarm.isEnabled = isEnabled
