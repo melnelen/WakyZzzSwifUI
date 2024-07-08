@@ -5,7 +5,6 @@
 //  Created by Alexandra Ivanova on 28/06/2024.
 //
 
-import Foundation
 import UserNotifications
 import SwiftUI
 
@@ -13,6 +12,16 @@ class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenter
     @Published var alarmToSnooze: Alarm?
     @Published var showRandomActOfKindness: Bool = false
     @Published var randomActTask: String = ""
+    
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(showRandomActOfKindnessAlert(_:)), name: Notification.Name("ShowRandomActOfKindnessAlert"), object: nil)
+    }
+    
+    @objc private func showRandomActOfKindnessAlert(_ notification: Notification) {
+        randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+        showRandomActOfKindness = true
+    }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
