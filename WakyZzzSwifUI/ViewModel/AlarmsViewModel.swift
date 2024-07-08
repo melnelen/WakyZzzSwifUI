@@ -59,6 +59,12 @@ class AlarmsViewModel: ObservableObject {
         }
     }
     
+    func toggleEnabled(for alarm: Alarm, isEnabled: Bool) {
+        var updatedAlarm = alarm
+        updatedAlarm.isEnabled = isEnabled
+        alarmManager.updateAlarm(updatedAlarm)
+    }
+    
     var alarmAlert: Alert {
         Alert(
             title: Text("Alarm"),
@@ -74,21 +80,5 @@ class AlarmsViewModel: ObservableObject {
                 }
             }
         )
-    }
-    
-    var randomActOfKindnessAlert: Alert {
-        Alert(
-            title: Text("Random Act of Kindness"),
-            message: Text(self.randomActTask),
-            dismissButton: .default(Text("OK")) {
-                self.showRandomActOfKindness = false
-            }
-        )
-    }
-    
-    func toggleEnabled(for alarm: Alarm, isEnabled: Bool) {
-        var updatedAlarm = alarm
-        updatedAlarm.isEnabled = isEnabled
-        alarmManager.updateAlarm(updatedAlarm)
     }
 }

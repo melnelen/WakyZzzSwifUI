@@ -19,12 +19,12 @@ struct AlarmsView: View {
             List {
                 ForEach(viewModel.alarmManager.alarms) { alarm in
                     Button(action: {
-                        self.viewModel.selectedAlarm = alarm
-                        self.viewModel.showingEditAlarmView = true
+                        viewModel.selectedAlarm = alarm
+                        viewModel.showingEditAlarmView = true
                     }) {
-                        AlarmRowView(alarm: alarm) { isEnabled in
+                        AlarmRowView(alarm: alarm, toggleEnabled: { isEnabled in
                             viewModel.toggleEnabled(for: alarm, isEnabled: isEnabled)
-                        }
+                        })
                     }
                 }
                 .onDelete(perform: viewModel.deleteAlarm)

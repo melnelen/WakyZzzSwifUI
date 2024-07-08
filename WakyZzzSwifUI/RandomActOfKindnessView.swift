@@ -25,11 +25,13 @@ struct RandomActOfKindnessView: View {
             Button("Complete Task") {
                 showingView = false
                 // Code to mark the task as completed
+                print("Random act of kindness completed.")
             }
             
             Button("Promise to Do It Later") {
                 showingView = false
                 // Code to set up a local notification reminder
+                print("Promised to do the random act of kindness later.")
             }
         }
         .padding()

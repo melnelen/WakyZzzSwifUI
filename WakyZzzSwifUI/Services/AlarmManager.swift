@@ -122,7 +122,7 @@ class AlarmManager: ObservableObject {
                     if let error = error {
                         print("Error scheduling snooze alarm: \(error)")
                     } else {
-                        print("Snooze alarm scheduled with identifier: \(alarm.id)")
+                        print("Snooze alarm scheduled with identifier: \(alarm.id)-snooze")
                     }
                 }
                 completion(false)
@@ -153,39 +153,39 @@ class AlarmManager: ObservableObject {
     }
     
     private func playEvilSound(alarm: Alarm) {
-        let content = UNMutableNotificationContent()
-        content.title = "Evil Alarm"
-        content.body = "You must complete a random act of kindness to turn off this alarm."
-        content.sound = UNNotificationSound(named: UNNotificationSoundName("sound"))
-        content.categoryIdentifier = "ALARM_CATEGORY"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: "\(alarm.id)-evil", content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error scheduling evil alarm: \(error)")
-            } else {
-                print("Evil alarm scheduled with identifier: \(alarm.id)-evil")
+            let content = UNMutableNotificationContent()
+            content.title = "Evil Alarm"
+            content.body = "You must complete a random act of kindness to turn off this alarm."
+            content.sound = UNNotificationSound(named: UNNotificationSoundName("sound"))
+            content.categoryIdentifier = "ALARM_CATEGORY"
+
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(identifier: "\(alarm.id)", content: content, trigger: trigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error scheduling evil alarm: \(error)")
+                } else {
+                    print("Evil alarm scheduled with identifier: \(alarm.id)-evil")
+                }
+            }
+
+            // Present Random Act of Kindness Alert
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
             }
         }
-        
-        // Present Random Act of Kindness Alert
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
-        }
+
+        let randomActsOfKindness: [String] = [
+            "Message a friend asking how they are doing",
+            "Connect with a family member by expressing a kind thought",
+            "Compliment a colleague on their work",
+            "Donate to a charity of your choice",
+            "Write a positive review for a local business",
+            "Offer to help a neighbor with a chore",
+            "Leave a positive note for a family member or roommate",
+            "Volunteer for a community service activity",
+            "Send a thank-you note to someone who has helped you recently",
+            "Pay for a stranger’s coffee or meal"
+        ]
     }
-    
-    let randomActsOfKindness: [String] = [
-        "Message a friend asking how they are doing",
-        "Connect with a family member by expressing a kind thought",
-        "Compliment a colleague on their work",
-        "Donate to a charity of your choice",
-        "Write a positive review for a local business",
-        "Offer to help a neighbor with a chore",
-        "Leave a positive note for a family member or roommate",
-        "Volunteer for a community service activity",
-        "Send a thank-you note to someone who has helped you recently",
-        "Pay for a stranger’s coffee or meal"
-    ]
-}

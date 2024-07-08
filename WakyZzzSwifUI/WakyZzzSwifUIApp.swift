@@ -10,13 +10,7 @@ import UserNotifications
 
 @main
 struct WakyZzzSwiftUIApp: App {
-    
     @StateObject private var notificationDelegate = NotificationDelegate()
-    
-    init() {
-        requestNotificationPermissions()
-        configureNotificationActions()
-    }
     
     var body: some Scene {
         WindowGroup {
@@ -24,6 +18,11 @@ struct WakyZzzSwiftUIApp: App {
                 .environmentObject(notificationDelegate)
                 .onAppear {
                     UNUserNotificationCenter.current().delegate = notificationDelegate
+                    requestNotificationPermissions()
+                    configureNotificationActions()
+                }
+                .sheet(isPresented: $notificationDelegate.showRandomActOfKindness) {
+                    RandomActOfKindnessView(showingView: $notificationDelegate.showRandomActOfKindness, task: notificationDelegate.randomActTask)
                 }
         }
     }
