@@ -160,7 +160,7 @@ class AlarmManager: ObservableObject {
         let content = UNMutableNotificationContent()
         content.title = "Evil Alarm"
         content.body = "You must complete a random act of kindness to turn off this alarm."
-        content.sound = UNNotificationSound(named: UNNotificationSoundName("sound"))
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("sound.mp3"))
         content.categoryIdentifier = "ALARM_CATEGORY"
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false) // Change time interval for tests
