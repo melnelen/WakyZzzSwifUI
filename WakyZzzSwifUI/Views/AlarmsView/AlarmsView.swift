@@ -30,18 +30,7 @@ struct AlarmsView: View {
                 .onDelete(perform: viewModel.deleteAlarm)
             }
             .navigationTitle("Alarms")
-            .navigationBarItems(trailing: HStack {
-                Button(action: {
-                    viewModel.showingAddAlarmView = true
-                }) {
-                    Image(systemName: "plus")
-                }
-                Button(action: {
-                    viewModel.scheduleTestAlarm()
-                }) {
-                    Text("Test Alarm")
-                }
-            })
+            .navigationBarItems(trailing: NavigationBarButtonsView(viewModel: viewModel))
             .sheet(isPresented: $viewModel.showingAddAlarmView) {
                 AddAlarmView(alarms: $viewModel.alarmManager.alarms, isPresented: $viewModel.showingAddAlarmView)
             }
