@@ -10,7 +10,7 @@ import SwiftUI
 struct AlarmsView: View {
     @StateObject private var viewModel: AlarmsViewModel
     
-    init(notificationDelegate: NotificationDelegate, alarmManager: AlarmManagerProtocol) {
+    init(notificationDelegate: NotificationManager, alarmManager: AlarmManagerProtocol) {
         _viewModel = StateObject(wrappedValue: AlarmsViewModel(notificationDelegate: notificationDelegate, alarmManager: alarmManager))
     }
     
@@ -45,6 +45,6 @@ struct AlarmsView: View {
 }
 
 #Preview {
-    AlarmsView(notificationDelegate: NotificationDelegate(), alarmManager: MockAlarmManager())
-        .environmentObject(NotificationDelegate())
+    AlarmsView(notificationDelegate: NotificationManager(), alarmManager: MockAlarmManager())
+        .environmentObject(NotificationManager())
 }

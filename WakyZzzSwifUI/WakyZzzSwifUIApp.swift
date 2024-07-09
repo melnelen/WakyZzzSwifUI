@@ -10,7 +10,7 @@ import UserNotifications
 
 @main
 struct WakyZzzSwiftUIApp: App {
-    @StateObject private var notificationDelegate = NotificationDelegate()
+    @StateObject private var notificationDelegate = NotificationManager()
     
     var body: some Scene {
         WindowGroup {

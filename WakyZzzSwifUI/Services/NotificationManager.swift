@@ -36,30 +36,7 @@ class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Notification received with identifier: \(response.notification.request.identifier)")
-        let identifier = response.notification.request.identifier
-        if identifier.contains("-evil") {
-            DispatchQueue.main.async {
-                self.randomActTask = self.alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
-                self.showRandomActOfKindness = true
-            }
-        } else if response.actionIdentifier == "SNOOZE_ACTION" {
-            let alarmID = response.notification.request.identifier
-            if let alarmUUID = UUID(uuidString: alarmID) {
-                if let alarm = alarmManager.getAlarm(by: alarmUUID) {
-                    AlarmManager().snoozeAlarm(alarm: alarm) { showKindness in
-                        if showKindness {
-                            DispatchQueue.main.async {
-                                self.alarmToSnooze = alarm
-                                self.randomActTask = self.alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
-                                self.showRandomActOfKindness = true
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: response.notification.request.identifier)
-        }
+        NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: response.notification.request.identifier)
         completionHandler()
     }
 }

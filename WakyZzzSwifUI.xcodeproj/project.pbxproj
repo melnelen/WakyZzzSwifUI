@@ -30,7 +30,7 @@
 		19D74AB22C2EEB24000D32FE /* AlarmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB12C2EEB24000D32FE /* AlarmRowView.swift */; };
 		19D74AB62C2EFD16000D32FE /* AlarmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB52C2EFD16000D32FE /* AlarmsViewModel.swift */; };
 		19D74AB82C2F09C3000D32FE /* AddAlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB72C2F09C3000D32FE /* AddAlarmViewModel.swift */; };
-		19D74ABA2C2F3FC6000D32FE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB92C2F3FC6000D32FE /* NotificationDelegate.swift */; };
+		19D74ABA2C2F3FC6000D32FE /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AB92C2F3FC6000D32FE /* NotificationManager.swift */; };
 		19D74ABC2C2F4227000D32FE /* NavigationBarButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74ABB2C2F4227000D32FE /* NavigationBarButtonsView.swift */; };
 		19D74ABE2C2F42E3000D32FE /* AlarmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74ABD2C2F42E3000D32FE /* AlarmListView.swift */; };
 		19D74AC42C2F4BDB000D32FE /* AlarmTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AC32C2F4BDB000D32FE /* AlarmTimePickerView.swift */; };
@@ -87,7 +87,7 @@
 		19D74AB12C2EEB24000D32FE /* AlarmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmRowView.swift; sourceTree = "<group>"; };
 		19D74AB52C2EFD16000D32FE /* AlarmsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsViewModel.swift; sourceTree = "<group>"; };
 		19D74AB72C2F09C3000D32FE /* AddAlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmViewModel.swift; sourceTree = "<group>"; };
-		19D74AB92C2F3FC6000D32FE /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		19D74AB92C2F3FC6000D32FE /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		19D74ABB2C2F4227000D32FE /* NavigationBarButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarButtonsView.swift; sourceTree = "<group>"; };
 		19D74ABD2C2F42E3000D32FE /* AlarmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListView.swift; sourceTree = "<group>"; };
 		19D74AC32C2F4BDB000D32FE /* AlarmTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimePickerView.swift; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 				199BFED12C3DD37900FC0CCE /* AlarmManagerProtocol.swift */,
 				19D56F092C2B4EF400AA6811 /* AlarmManager.swift */,
 				199BFED92C3DEE9900FC0CCE /* MockAlarmManager.swift */,
-				19D74AB92C2F3FC6000D32FE /* NotificationDelegate.swift */,
+				19D74AB92C2F3FC6000D32FE /* NotificationManager.swift */,
 				199BFEDD2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift */,
 			);
 			path = Services;
@@ -431,7 +431,7 @@
 				19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */,
 				19D56F0A2C2B4EF400AA6811 /* AlarmManager.swift in Sources */,
 				19D74AD12C2F5EDC000D32FE /* RepeatDaysSectionView.swift in Sources */,
-				19D74ABA2C2F3FC6000D32FE /* NotificationDelegate.swift in Sources */,
+				19D74ABA2C2F3FC6000D32FE /* NotificationManager.swift in Sources */,
 				19D74ABC2C2F4227000D32FE /* NavigationBarButtonsView.swift in Sources */,
 				19D74AC42C2F4BDB000D32FE /* AlarmTimePickerView.swift in Sources */,
 				19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */,

@@ -21,5 +21,5 @@ struct SaveChangesButton: View {
 }
 
 #Preview {
-    SaveChangesButton(viewModel: EditAlarmViewModel(alarms: .constant([]), alarm: Alarm.example, notificationDelegate: NotificationDelegate()))
+    SaveChangesButton(viewModel: EditAlarmViewModel(alarms: .constant([]), alarm: Alarm.example, notificationDelegate: NotificationManager()))
 }

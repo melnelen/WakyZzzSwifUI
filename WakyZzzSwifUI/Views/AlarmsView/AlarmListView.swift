@@ -28,5 +28,5 @@ struct AlarmListView: View {
 }
 
 #Preview {
-    AlarmListView(viewModel: AlarmsViewModel(notificationDelegate: NotificationDelegate(), alarmManager: MockAlarmManager()))
+    AlarmListView(viewModel: AlarmsViewModel(notificationDelegate: NotificationManager(), alarmManager: MockAlarmManager()))
 }
