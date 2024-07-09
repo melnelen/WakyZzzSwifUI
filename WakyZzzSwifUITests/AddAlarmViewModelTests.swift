@@ -11,13 +11,13 @@ import SwiftUI
 
 class AddAlarmViewModelTests: XCTestCase {
     var viewModel: AddAlarmViewModel!
-    var alarmManager: AlarmManager!
+    var alarmManager: MockAlarmManager!
     var alarms: Binding<[Alarm]>!
     var isPresented: Binding<Bool>!
     
     override func setUp() {
         super.setUp()
-        alarmManager = AlarmManager()
+        alarmManager = MockAlarmManager()
         alarms = .constant([])
         isPresented = .constant(false)
     }

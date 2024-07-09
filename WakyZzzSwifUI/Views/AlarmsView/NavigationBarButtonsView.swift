@@ -29,5 +29,5 @@ struct NavigationBarButtonsView: View {
 }
 
 #Preview {
-    NavigationBarButtonsView(viewModel: AlarmsViewModel(notificationDelegate: NotificationDelegate()))
+    NavigationBarButtonsView(viewModel: AlarmsViewModel(notificationDelegate: NotificationDelegate(), alarmManager: MockAlarmManager()))
 }

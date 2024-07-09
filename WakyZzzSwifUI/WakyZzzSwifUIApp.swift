@@ -14,7 +14,7 @@ struct WakyZzzSwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AlarmsView(notificationDelegate: notificationDelegate)
+            AlarmsView(notificationDelegate: notificationDelegate, alarmManager: AlarmManager())
                 .environmentObject(notificationDelegate)
                 .onAppear {
                     UNUserNotificationCenter.current().delegate = notificationDelegate

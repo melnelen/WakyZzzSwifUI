@@ -10,14 +10,14 @@ import SwiftUI
 struct AlarmsView: View {
     @StateObject private var viewModel: AlarmsViewModel
     
-    init(notificationDelegate: NotificationDelegate) {
-        _viewModel = StateObject(wrappedValue: AlarmsViewModel(notificationDelegate: notificationDelegate))
+    init(notificationDelegate: NotificationDelegate, alarmManager: AlarmManagerProtocol) {
+        _viewModel = StateObject(wrappedValue: AlarmsViewModel(notificationDelegate: notificationDelegate, alarmManager: alarmManager))
     }
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.alarmManager.alarms) { alarm in
+                ForEach(viewModel.alarms) { alarm in
                     Button(action: {
                         viewModel.selectedAlarm = alarm
                         viewModel.showingEditAlarmView = true
@@ -32,10 +32,10 @@ struct AlarmsView: View {
             .navigationTitle("Alarms")
             .navigationBarItems(trailing: NavigationBarButtonsView(viewModel: viewModel))
             .sheet(isPresented: $viewModel.showingAddAlarmView) {
-                AddAlarmView(alarms: $viewModel.alarmManager.alarms, isPresented: $viewModel.showingAddAlarmView)
+                AddAlarmView(alarms: $viewModel.alarms, isPresented: $viewModel.showingAddAlarmView)
             }
             .sheet(item: $viewModel.selectedAlarm) { alarm in
-                EditAlarmView(alarms: $viewModel.alarmManager.alarms, alarm: alarm, notificationDelegate: viewModel.notificationDelegate)
+                EditAlarmView(alarms: $viewModel.alarms, alarm: alarm, notificationDelegate: viewModel.notificationDelegate)
             }
             .alert(isPresented: $viewModel.showingAlarmAlert) {
                 viewModel.alarmAlert
@@ -45,6 +45,6 @@ struct AlarmsView: View {
 }
 
 #Preview {
-    AlarmsView(notificationDelegate: NotificationDelegate())
+    AlarmsView(notificationDelegate: NotificationDelegate(), alarmManager: MockAlarmManager())
         .environmentObject(NotificationDelegate())
 }

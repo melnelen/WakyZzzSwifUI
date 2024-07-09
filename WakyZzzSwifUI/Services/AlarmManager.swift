@@ -8,15 +8,17 @@
 import SwiftUI
 import UserNotifications
 
-class AlarmManager: ObservableObject, AlarmManagerProtocol {    
-    init() {
-        loadAlarms()
-    }
-    
+class AlarmManager: ObservableObject, AlarmManagerProtocol {
     @Published var alarms: [Alarm] = [] {
         didSet {
             saveAlarms()
         }
+    }
+    
+    var randomActsOfKindness: [String] = RandomActsOfKindnessLoader.loadRandomActsOfKindness()
+    
+    init() {
+        loadAlarms()
     }
     
     private let userDefaultsKey = "alarms"
@@ -105,7 +107,6 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
             
             if alarms[index].snoozeCount > 2 {
                 playEvilSound(alarm: alarms[index])
-                // Notify the NotificationDelegate to show the Random Act of Kindness view
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
                 }
@@ -177,17 +178,4 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
             NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
         }
     }
-    
-    let randomActsOfKindness: [String] = [
-        "Message a friend asking how they are doing",
-        "Connect with a family member by expressing a kind thought",
-        "Compliment a colleague on their work",
-        "Donate to a charity of your choice",
-        "Write a positive review for a local business",
-        "Offer to help a neighbor with a chore",
-        "Leave a positive note for a family member or roommate",
-        "Volunteer for a community service activity",
-        "Send a thank-you note to someone who has helped you recently",
-        "Pay for a stranger’s coffee or meal"
-    ]
 }
