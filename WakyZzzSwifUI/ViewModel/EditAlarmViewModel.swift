@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class EditAlarmViewModel: ObservableObject {
+    @Published var alarmManager = AlarmManager()
     @Published var alarm: Alarm
     @Published var time: Date
     @Published var repeatDays: [String]
@@ -56,6 +57,6 @@ class EditAlarmViewModel: ObservableObject {
             print("Added new alarm: \(alarm)")
         }
         
-        AlarmManager.shared.updateAlarm(alarm)
+        alarmManager.updateAlarm(alarm)
     }
 }

@@ -8,10 +8,8 @@
 import SwiftUI
 import UserNotifications
 
-class AlarmManager: ObservableObject {
-    static let shared = AlarmManager()
-    
-    private init() {
+class AlarmManager: ObservableObject, AlarmManagerProtocol {    
+    init() {
         loadAlarms()
     }
     

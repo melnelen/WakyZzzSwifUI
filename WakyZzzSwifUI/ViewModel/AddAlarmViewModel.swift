@@ -12,13 +12,15 @@ class AddAlarmViewModel: ObservableObject {
     @Published var repeatDays: [String] = []
     @Published var isEnabled: Bool = true
     
-    @Published var alarms: [Alarm]
+    @Binding var alarms: [Alarm]
     
     private var isPresented: Binding<Bool>
+    private var alarmManager: AlarmManagerProtocol
     
-    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>) {
-        self._alarms = Published(initialValue: alarms.wrappedValue)
+    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager()) {
+        self._alarms = alarms
         self.isPresented = isPresented
+        self.alarmManager = alarmManager
 
         var components = DateComponents()
         components.hour = 8
@@ -29,7 +31,7 @@ class AddAlarmViewModel: ObservableObject {
     func addAlarm() {
         let newAlarm = Alarm(time: time, repeatDays: repeatDays, isEnabled: isEnabled)
         alarms.append(newAlarm)
-        AlarmManager.shared.addAlarm(newAlarm)
+        alarmManager.addAlarm(newAlarm)
         isPresented.wrappedValue = false
     }
 

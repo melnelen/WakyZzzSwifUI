@@ -13,13 +13,15 @@ class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenter
     @Published var showRandomActOfKindness: Bool = false
     @Published var randomActTask: String = ""
     
+    let alarmManager = AlarmManager()
+    
     override init() {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(showRandomActOfKindnessAlert(_:)), name: Notification.Name("ShowRandomActOfKindnessAlert"), object: nil)
     }
     
     @objc private func showRandomActOfKindnessAlert(_ notification: Notification) {
-        randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+        randomActTask = alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
         showRandomActOfKindness = true
     }
     
@@ -37,18 +39,18 @@ class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenter
         let identifier = response.notification.request.identifier
         if identifier.contains("-evil") {
             DispatchQueue.main.async {
-                self.randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+                self.randomActTask = self.alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
                 self.showRandomActOfKindness = true
             }
         } else if response.actionIdentifier == "SNOOZE_ACTION" {
             let alarmID = response.notification.request.identifier
             if let alarmUUID = UUID(uuidString: alarmID) {
-                if let alarm = AlarmManager.shared.getAlarm(by: alarmUUID) {
-                    AlarmManager.shared.snoozeAlarm(alarm: alarm) { showKindness in
+                if let alarm = alarmManager.getAlarm(by: alarmUUID) {
+                    AlarmManager().snoozeAlarm(alarm: alarm) { showKindness in
                         if showKindness {
                             DispatchQueue.main.async {
                                 self.alarmToSnooze = alarm
-                                self.randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+                                self.randomActTask = self.alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
                                 self.showRandomActOfKindness = true
                             }
                         }

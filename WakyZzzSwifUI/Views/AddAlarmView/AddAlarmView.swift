@@ -10,8 +10,8 @@ import SwiftUI
 struct AddAlarmView: View {
     @ObservedObject var viewModel: AddAlarmViewModel
 
-    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>) {
-        self.viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented)
+    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager()) {
+        self.viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented, alarmManager: alarmManager)
     }
 
     var body: some View {
@@ -23,7 +23,7 @@ struct AddAlarmView: View {
                 AddAlarmButton(viewModel: viewModel)
             }
             .navigationTitle("Add Alarm")
-            .navigationBarItems(trailing: CancelButton {viewModel.cancel()})
+            .navigationBarItems(trailing: CancelButton { viewModel.cancel() })
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import UserNotifications
 
 class AlarmsViewModel: ObservableObject {
-    @Published var alarmManager = AlarmManager.shared
+    @Published var alarmManager = AlarmManager()
     @Published var showingAddAlarmView = false
     @Published var selectedAlarm: Alarm?
     @Published var showingEditAlarmView = false
@@ -30,7 +30,7 @@ class AlarmsViewModel: ObservableObject {
             }
         }
         NotificationCenter.default.addObserver(forName: Notification.Name("ShowRandomActOfKindnessAlert"), object: nil, queue: .main) { notification in
-            self.randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+            self.randomActTask = self.alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
             self.showRandomActOfKindness = true
         }
     }
@@ -53,7 +53,7 @@ class AlarmsViewModel: ObservableObject {
     func snoozeAlarm(alarm: Alarm) {
         alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
             if showKindness {
-                self.randomActTask = AlarmManager.shared.randomActsOfKindness.randomElement() ?? "Do something kind!"
+                self.randomActTask = self.alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
                 self.showRandomActOfKindness = true
             }
         }
