@@ -13,7 +13,6 @@
 		19D56EE22C2B1A7300AA6811 /* WakyZzzSwifUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EE12C2B1A7300AA6811 /* WakyZzzSwifUITests.swift */; };
 		19D56EEC2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */; };
 		19D56EEE2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */; };
-		19D56EFB2C2B1AC300AA6811 /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19D56EFA2C2B1AC300AA6811 /* sound.mp3 */; };
 		19D56EFF2C2B1B6B00AA6811 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */; };
 		19D56F012C2B1B9100AA6811 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F002C2B1B9100AA6811 /* Action.swift */; };
 		19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F022C2B1BB900AA6811 /* AlarmsView.swift */; };
@@ -35,6 +34,7 @@
 		19D74AD12C2F5EDC000D32FE /* RepeatDaysSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD02C2F5EDC000D32FE /* RepeatDaysSectionView.swift */; };
 		19D74AD32C2F630D000D32FE /* SaveChangesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */; };
 		19D74AD52C2F638C000D32FE /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD42C2F638C000D32FE /* CancelButton.swift */; };
+		19D74AD82C3DCF55000D32FE /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19D74AD72C3DCF55000D32FE /* sound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		19D56EE72C2B1A7300AA6811 /* WakyZzzSwifUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakyZzzSwifUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIUITests.swift; sourceTree = "<group>"; };
 		19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		19D56EFA2C2B1AC300AA6811 /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 		19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		19D56F002C2B1B9100AA6811 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		19D56F022C2B1BB900AA6811 /* AlarmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsView.swift; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		19D74AD02C2F5EDC000D32FE /* RepeatDaysSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSectionView.swift; sourceTree = "<group>"; };
 		19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveChangesButton.swift; sourceTree = "<group>"; };
 		19D74AD42C2F638C000D32FE /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		19D74AD72C3DCF55000D32FE /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,11 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				19D56F2A2C2C793E00AA6811 /* Info.plist */,
-				19D56EFA2C2B1AC300AA6811 /* sound.mp3 */,
+				19D74AD72C3DCF55000D32FE /* sound.mp3 */,
 				19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */,
 				19D56EFD2C2B1B5300AA6811 /* Views */,
-				19D74AC52C2F4BF6000D32FE /* ReusableViews */,
-				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
 				19D56F082C2B45C100AA6811 /* ViewModel */,
 				19D74AC82C2F4D7D000D32FE /* Services */,
 				19D56EFC2C2B1B4300AA6811 /* Model */,
@@ -193,6 +191,8 @@
 				19D74AC12C2F49D1000D32FE /* AlarmsView */,
 				19D74AC22C2F4A28000D32FE /* AddAlarmView */,
 				19D74ACF2C2F5CBD000D32FE /* EditAlarmView */,
+				19D74AD62C3DCDEA000D32FE /* RandomActOfKindnessView */,
+				19D74AC52C2F4BF6000D32FE /* ReusableViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +254,14 @@
 				19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */,
 			);
 			path = EditAlarmView;
+			sourceTree = "<group>";
+		};
+		19D74AD62C3DCDEA000D32FE /* RandomActOfKindnessView */ = {
+			isa = PBXGroup;
+			children = (
+				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
+			);
+			path = RandomActOfKindnessView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,9 +368,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19D74AD82C3DCF55000D32FE /* sound.mp3 in Resources */,
 				19D56F272C2C614900AA6811 /* .gitignore in Resources */,
 				19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */,
-				19D56EFB2C2B1AC300AA6811 /* sound.mp3 in Resources */,
 				19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
