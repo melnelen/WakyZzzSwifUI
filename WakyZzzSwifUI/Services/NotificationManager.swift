@@ -1,5 +1,5 @@
 //
-//  NotificationDelegate.swift
+//  NotificationManager.swift
 //  WakyZzzSwifUI
 //
 //  Created by Alexandra Ivanova on 28/06/2024.
@@ -8,7 +8,7 @@
 import UserNotifications
 import SwiftUI
 
-class NotificationDelegate: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
+class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     @Published var alarmToSnooze: Alarm?
     @Published var showRandomActOfKindness: Bool = false
     @Published var randomActTask: String = ""
