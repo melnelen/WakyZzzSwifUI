@@ -13,6 +13,8 @@
 		199BFEDA2C3DEE9900FC0CCE /* MockAlarmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFED92C3DEE9900FC0CCE /* MockAlarmManager.swift */; };
 		199BFEDC2C3DF13E00FC0CCE /* random_acts_of_kindness.json in Resources */ = {isa = PBXBuildFile; fileRef = 199BFEDB2C3DF13E00FC0CCE /* random_acts_of_kindness.json */; };
 		199BFEDE2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEDD2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift */; };
+		199BFEE02C3E96F600FC0CCE /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */; };
+		199BFEE22C3E994F00FC0CCE /* ConfirmationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */; };
 		19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */; };
 		19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED42C2B1A7300AA6811 /* Assets.xcassets */; };
 		19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED72C2B1A7300AA6811 /* Preview Assets.xcassets */; };
@@ -66,6 +68,8 @@
 		199BFED92C3DEE9900FC0CCE /* MockAlarmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAlarmManager.swift; sourceTree = "<group>"; };
 		199BFEDB2C3DF13E00FC0CCE /* random_acts_of_kindness.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = random_acts_of_kindness.json; sourceTree = "<group>"; };
 		199BFEDD2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActsOfKindnessLoader.swift; sourceTree = "<group>"; };
+		199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationMessageView.swift; sourceTree = "<group>"; };
 		19D56ECD2C2B1A7100AA6811 /* WakyZzzSwifUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakyZzzSwifUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIApp.swift; sourceTree = "<group>"; };
 		19D56ED42C2B1A7300AA6811 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
+				199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */,
+				199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */,
 			);
 			path = RandomActOfKindnessView;
 			sourceTree = "<group>";
@@ -430,8 +436,10 @@
 				19D56F052C2B1BD800AA6811 /* AddAlarmView.swift in Sources */,
 				19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */,
 				19D56F0A2C2B4EF400AA6811 /* AlarmManager.swift in Sources */,
+				199BFEE02C3E96F600FC0CCE /* ConfettiView.swift in Sources */,
 				19D74AD12C2F5EDC000D32FE /* RepeatDaysSectionView.swift in Sources */,
 				19D74ABA2C2F3FC6000D32FE /* NotificationManager.swift in Sources */,
+				199BFEE22C3E994F00FC0CCE /* ConfirmationMessageView.swift in Sources */,
 				19D74ABC2C2F4227000D32FE /* NavigationBarButtonsView.swift in Sources */,
 				19D74AC42C2F4BDB000D32FE /* AlarmTimePickerView.swift in Sources */,
 				19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */,
