@@ -15,6 +15,7 @@
 		199BFEDE2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEDD2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift */; };
 		199BFEE02C3E96F600FC0CCE /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */; };
 		199BFEE22C3E994F00FC0CCE /* ConfirmationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */; };
+		199BFEE42C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE32C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift */; };
 		19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */; };
 		19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED42C2B1A7300AA6811 /* Assets.xcassets */; };
 		19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED72C2B1A7300AA6811 /* Preview Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		199BFEDD2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActsOfKindnessLoader.swift; sourceTree = "<group>"; };
 		199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationMessageView.swift; sourceTree = "<group>"; };
+		199BFEE32C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActOfKindnessViewModel.swift; sourceTree = "<group>"; };
 		19D56ECD2C2B1A7100AA6811 /* WakyZzzSwifUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakyZzzSwifUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIApp.swift; sourceTree = "<group>"; };
 		19D56ED42C2B1A7300AA6811 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				19D74AB52C2EFD16000D32FE /* AlarmsViewModel.swift */,
 				19D74AB72C2F09C3000D32FE /* AddAlarmViewModel.swift */,
 				19D74AAF2C2EA4B3000D32FE /* EditAlarmViewModel.swift */,
+				199BFEE32C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				19D74AD32C2F630D000D32FE /* SaveChangesButton.swift in Sources */,
 				19D74AB82C2F09C3000D32FE /* AddAlarmViewModel.swift in Sources */,
 				19D74ABE2C2F42E3000D32FE /* AlarmListView.swift in Sources */,
+				199BFEE42C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift in Sources */,
 				199BFED22C3DD37900FC0CCE /* AlarmManagerProtocol.swift in Sources */,
 				19D74AB62C2EFD16000D32FE /* AlarmsViewModel.swift in Sources */,
 				19D74ACA2C2F500C000D32FE /* AlarmToggleView.swift in Sources */,

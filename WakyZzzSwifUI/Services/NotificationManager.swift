@@ -17,6 +17,7 @@ class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterD
     
     override init() {
         super.init()
+        UNUserNotificationCenter.current().delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(showRandomActOfKindnessAlert(_:)), name: Notification.Name("ShowRandomActOfKindnessAlert"), object: nil)
     }
     
@@ -36,6 +37,12 @@ class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Notification received with identifier: \(response.notification.request.identifier)")
+        
+        if let task = response.notification.request.content.userInfo["task"] as? String {
+            randomActTask = task
+            showRandomActOfKindness = true
+        }
+        
         NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: response.notification.request.identifier)
         completionHandler()
     }

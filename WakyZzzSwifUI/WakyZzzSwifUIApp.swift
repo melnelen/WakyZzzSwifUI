@@ -10,19 +10,19 @@ import UserNotifications
 
 @main
 struct WakyZzzSwiftUIApp: App {
-    @StateObject private var notificationDelegate = NotificationManager()
+    @StateObject private var notificationManager = NotificationManager()
     
     var body: some Scene {
         WindowGroup {
-            AlarmsView(notificationDelegate: notificationDelegate, alarmManager: AlarmManager())
-                .environmentObject(notificationDelegate)
+            AlarmsView(notificationDelegate: notificationManager, alarmManager: AlarmManager())
+                .environmentObject(notificationManager)
                 .onAppear {
-                    UNUserNotificationCenter.current().delegate = notificationDelegate
+                    UNUserNotificationCenter.current().delegate = notificationManager
                     requestNotificationPermissions()
                     configureNotificationActions()
                 }
-                .sheet(isPresented: $notificationDelegate.showRandomActOfKindness) {
-                    RandomActOfKindnessView(showingView: $notificationDelegate.showRandomActOfKindness, task: notificationDelegate.randomActTask)
+                .sheet(isPresented: $notificationManager.showRandomActOfKindness) {
+                    RandomActOfKindnessView(showingView: $notificationManager.showRandomActOfKindness, task: notificationManager.randomActTask)
                 }
         }
     }

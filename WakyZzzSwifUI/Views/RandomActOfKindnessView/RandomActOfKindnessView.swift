@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RandomActOfKindnessView: View {
+    @StateObject private var viewModel = RandomActOfKindnessViewModel()
     @Binding var showingView: Bool
     let task: String
     @State private var showConfetti = false
@@ -45,10 +46,10 @@ struct RandomActOfKindnessView: View {
             .cornerRadius(10)
             
             Button("Promise to Do It Later") {
+                viewModel.scheduleNotification(for: task)
                 withAnimation {
                     showingView = false
                 }
-                // Code to set up a local notification reminder
                 print("Promised to do the random act of kindness later.")
             }
         }
