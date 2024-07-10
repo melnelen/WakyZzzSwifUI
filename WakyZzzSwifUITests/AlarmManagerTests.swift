@@ -45,7 +45,7 @@ class AlarmManagerTests: XCTestCase {
         updatedAlarm.time = updatedTime
         
         // When
-        alarmManager.updateAlarm(updatedAlarm)
+        alarmManager.updateAlarm(alarm: updatedAlarm, isEnabled: updatedAlarm.isEnabled)
         
         // Then
         XCTAssertEqual(alarmManager.alarms.first?.time, updatedTime)

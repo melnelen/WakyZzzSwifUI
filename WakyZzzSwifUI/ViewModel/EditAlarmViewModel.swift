@@ -57,6 +57,6 @@ class EditAlarmViewModel: ObservableObject {
             print("Added new alarm: \(alarm)")
         }
         
-        alarmManager.updateAlarm(alarm)
+        alarmManager.updateAlarm(alarm: alarm, isEnabled: isEnabled)
     }
 }

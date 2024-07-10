@@ -16,6 +16,8 @@
 		199BFEE02C3E96F600FC0CCE /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */; };
 		199BFEE22C3E994F00FC0CCE /* ConfirmationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */; };
 		199BFEE42C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE32C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift */; };
+		199BFEE62C3EC55F00FC0CCE /* MockNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE52C3EC55F00FC0CCE /* MockNotificationManager.swift */; };
+		199BFEE82C3EC5AC00FC0CCE /* AlarmsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199BFEE72C3EC5AC00FC0CCE /* AlarmsViewModelTests.swift */; };
 		19D56ED12C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */; };
 		19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED42C2B1A7300AA6811 /* Assets.xcassets */; };
 		19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED72C2B1A7300AA6811 /* Preview Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationMessageView.swift; sourceTree = "<group>"; };
 		199BFEE32C3EC13C00FC0CCE /* RandomActOfKindnessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomActOfKindnessViewModel.swift; sourceTree = "<group>"; };
+		199BFEE52C3EC55F00FC0CCE /* MockNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationManager.swift; sourceTree = "<group>"; };
+		199BFEE72C3EC5AC00FC0CCE /* AlarmsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsViewModelTests.swift; sourceTree = "<group>"; };
 		19D56ECD2C2B1A7100AA6811 /* WakyZzzSwifUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WakyZzzSwifUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56ED02C2B1A7100AA6811 /* WakyZzzSwifUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIApp.swift; sourceTree = "<group>"; };
 		19D56ED42C2B1A7300AA6811 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				199BFED72C3DE04B00FC0CCE /* AlarmManagerTests.swift */,
+				199BFEE72C3EC5AC00FC0CCE /* AlarmsViewModelTests.swift */,
 				199BFED52C3DDB4300FC0CCE /* AddAlarmViewModelTests.swift */,
 			);
 			path = WakyZzzSwifUITests;
@@ -264,6 +269,7 @@
 				19D56F092C2B4EF400AA6811 /* AlarmManager.swift */,
 				199BFED92C3DEE9900FC0CCE /* MockAlarmManager.swift */,
 				19D74AB92C2F3FC6000D32FE /* NotificationManager.swift */,
+				199BFEE52C3EC55F00FC0CCE /* MockNotificationManager.swift */,
 				199BFEDD2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift */,
 			);
 			path = Services;
@@ -282,8 +288,8 @@
 			isa = PBXGroup;
 			children = (
 				19D56F0B2C2B540000AA6811 /* RandomActOfKindnessView.swift */,
-				199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */,
 				199BFEE12C3E994F00FC0CCE /* ConfirmationMessageView.swift */,
+				199BFEDF2C3E96F600FC0CCE /* ConfettiView.swift */,
 			);
 			path = RandomActOfKindnessView;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				19D74AB22C2EEB24000D32FE /* AlarmRowView.swift in Sources */,
 				19D74AB02C2EA4B3000D32FE /* EditAlarmViewModel.swift in Sources */,
 				19D56F0C2C2B540000AA6811 /* RandomActOfKindnessView.swift in Sources */,
+				199BFEE62C3EC55F00FC0CCE /* MockNotificationManager.swift in Sources */,
 				19D74AD52C2F638C000D32FE /* CancelButton.swift in Sources */,
 				199BFEDE2C3DF18500FC0CCE /* RandomActsOfKindnessLoader.swift in Sources */,
 				19D56F072C2B44AC00AA6811 /* EditAlarmView.swift in Sources */,
@@ -457,6 +464,7 @@
 			files = (
 				199BFED82C3DE04B00FC0CCE /* AlarmManagerTests.swift in Sources */,
 				199BFED62C3DDB4300FC0CCE /* AddAlarmViewModelTests.swift in Sources */,
+				199BFEE82C3EC5AC00FC0CCE /* AlarmsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

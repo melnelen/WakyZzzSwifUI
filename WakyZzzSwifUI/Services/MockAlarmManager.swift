@@ -16,14 +16,15 @@ class MockAlarmManager: AlarmManagerProtocol {
     }
     
     func removeAlarm(_ alarm: Alarm) {
-        if let index = alarms.firstIndex(of: alarm) {
+        if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms.remove(at: index)
         }
     }
     
-    func updateAlarm(_ alarm: Alarm) {
-        if let index = alarms.firstIndex(of: alarm) {
+    func updateAlarm(alarm: Alarm, isEnabled: Bool) {
+        if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index] = alarm
+            alarms[index].isEnabled = isEnabled
         }
     }
     
@@ -35,7 +36,26 @@ class MockAlarmManager: AlarmManagerProtocol {
     func snoozeAlarm(alarm: Alarm, completion: @escaping (Bool) -> Void) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index].snoozeCount += 1
-            completion(alarms[index].snoozeCount > 2)
+            if alarms[index].snoozeCount > 2 {
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
+    }
+    
+    func scheduleAlarm(alarm: Alarm) {
+        // Mock implementation
+        print("Mock: Scheduled alarm with identifier: \(alarm.id)")
+    }
+    
+    func disableAlarm(alarm: Alarm) {
+        // Mock implementation
+        print("Mock: Disabled alarm with identifier: \(alarm.id)")
+    }
+    
+    func enableAlarm(alarm: Alarm) {
+        // Mock implementation
+        print("Mock: Enabled alarm with identifier: \(alarm.id)")
     }
 }

@@ -38,11 +38,11 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
-    func updateAlarm(_ alarm: Alarm) {
+    func updateAlarm(alarm: Alarm, isEnabled: Bool) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }), isValidDate(alarm.time) {
             alarms[index] = alarm
             alarms.sort { $0.time < $1.time }
-            if alarm.isEnabled {
+            if isEnabled {
                 enableAlarm(alarm: alarm)
             } else {
                 disableAlarm(alarm: alarm)
@@ -162,7 +162,8 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         content.sound = UNNotificationSound(named: UNNotificationSoundName("sound.mp3"))
         content.categoryIdentifier = "ALARM_CATEGORY"
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false) // Change time interval for tests
+        // Change time interval for tests 
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: "\(alarm.id)", content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in

@@ -10,19 +10,18 @@ import SwiftUI
 struct AlarmRowView: View {
     var alarm: Alarm
     var toggleEnabled: (Bool) -> Void
-
+    
     var body: some View {
         HStack {
             Text(alarm.time, style: .time)
+                .font(.title2)
             Spacer()
-            Toggle(isOn: Binding(
+            Toggle("", isOn: Binding(
                 get: { alarm.isEnabled },
                 set: { newValue in
                     toggleEnabled(newValue)
                 }
-            )) {
-                Text(alarm.isEnabled ? "Enabled" : "Disabled")
-            }
+            ))
         }
     }
 }
