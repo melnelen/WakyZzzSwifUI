@@ -18,7 +18,7 @@ class AlarmsViewModel: ObservableObject {
     @Published var showRandomActOfKindness = false
     @Published var randomActTask = "Do something kind!"
     
-    var notificationDelegate: NotificationManager
+    var notificationManager: NotificationManager
     var alarmManager: AlarmManagerProtocol
     
     var alarmAlert: Alert {
@@ -38,8 +38,8 @@ class AlarmsViewModel: ObservableObject {
         )
     }
     
-    init(notificationDelegate: NotificationManager, alarmManager: AlarmManagerProtocol) {
-        self.notificationDelegate = notificationDelegate
+    init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol) {
+        self.notificationManager = notificationManager
         self.alarmManager = alarmManager
         self.alarms = alarmManager.alarms
         NotificationCenter.default.addObserver(forName: Notification.Name("AlarmTriggered"), object: nil, queue: .main) { notification in

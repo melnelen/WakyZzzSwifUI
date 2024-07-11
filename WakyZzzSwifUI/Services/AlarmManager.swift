@@ -23,10 +23,6 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
     
     private let userDefaultsKey = "alarms"
     
-    var allAlarms: [Alarm] {
-        return alarms
-    }
-    
     func addAlarm(_ alarm: Alarm) {
         if isValidDate(alarm.time) {
             alarms.append(alarm)

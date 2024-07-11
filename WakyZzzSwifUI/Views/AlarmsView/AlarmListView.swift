@@ -7,26 +7,35 @@
 
 import SwiftUI
 
+/// A view that displays a list of alarms.
 struct AlarmListView: View {
     @ObservedObject var viewModel: AlarmsViewModel
 
-        var body: some View {
-            List {
-                ForEach(viewModel.alarmManager.alarms) { alarm in
-                    Button(action: {
-                        viewModel.selectedAlarm = alarm
-                        viewModel.showingEditAlarmView = true
-                    }) {
-                        AlarmRowView(alarm: alarm, toggleEnabled: { isEnabled in
-                            viewModel.toggleEnabled(for: alarm, isEnabled: isEnabled)
-                        })
-                    }
+    var body: some View {
+        List {
+            // Iterate over each alarm in the view model's alarms list
+            ForEach(viewModel.alarms) { alarm in
+                // Button to handle alarm row tap action
+                Button(action: {
+                    // Set the selected alarm and show the edit alarm view
+                    viewModel.selectedAlarm = alarm
+                    viewModel.showingEditAlarmView = true
+                }) {
+                    // Use the AlarmRowView to display each alarm row
+                    AlarmRowView(alarm: alarm, toggleEnabled: { isEnabled in
+                        viewModel.toggleEnabled(for: alarm, isEnabled: isEnabled)
+                    })
+                    .accessibilityLabel("Alarm set for \(alarm.time, style: .time)")
+                    .accessibilityHint("Double tap to edit alarm")
                 }
-                .onDelete(perform: viewModel.deleteAlarm)
             }
+            // Enable deletion of alarms
+            .onDelete(perform: viewModel.deleteAlarm)
         }
+    }
 }
 
 #Preview {
-    AlarmListView(viewModel: AlarmsViewModel(notificationDelegate: NotificationManager(), alarmManager: MockAlarmManager()))
+    // Preview for AlarmListView with mock data
+    AlarmListView(viewModel: AlarmsViewModel(notificationManager: NotificationManager(), alarmManager: MockAlarmManager()))
 }

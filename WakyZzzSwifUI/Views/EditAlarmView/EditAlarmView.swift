@@ -11,8 +11,8 @@ struct EditAlarmView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: EditAlarmViewModel
     
-    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationDelegate: NotificationManager) {
-        self.viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, notificationDelegate: notificationDelegate)
+    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationManager: NotificationManager) {
+        self.viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, notificationManager: notificationManager)
     }
     
     var body: some View {
@@ -34,6 +34,6 @@ struct EditAlarmView: View {
 struct EditAlarmView_Previews: PreviewProvider {
     @State static var alarms: [Alarm] = [Alarm.example]
     static var previews: some View {
-        EditAlarmView(alarms: $alarms, alarm: Alarm.example, notificationDelegate: NotificationManager())
+        EditAlarmView(alarms: $alarms, alarm: Alarm.example, notificationManager: NotificationManager())
     }
 }

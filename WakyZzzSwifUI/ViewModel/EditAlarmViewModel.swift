@@ -16,11 +16,11 @@ class EditAlarmViewModel: ObservableObject {
     @Published var isEnabled: Bool
     
     private var alarms: Binding<[Alarm]>
-    var notificationDelegate: NotificationManager
+    var notificationManager: NotificationManager
     
-    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationDelegate: NotificationManager) {
+    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationManager: NotificationManager) {
         self.alarms = alarms
-        self.notificationDelegate = notificationDelegate
+        self.notificationManager = notificationManager
         
         // Initialize alarm properties first
         self.alarm = alarm

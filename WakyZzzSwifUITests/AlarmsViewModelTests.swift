@@ -18,7 +18,7 @@ class AlarmsViewModelTests: XCTestCase {
         super.setUp()
         mockAlarmManager = MockAlarmManager()
         mockNotificationManager = MockNotificationManager()
-        viewModel = AlarmsViewModel(notificationDelegate: mockNotificationManager, alarmManager: mockAlarmManager)
+        viewModel = AlarmsViewModel(notificationManager: mockNotificationManager, alarmManager: mockAlarmManager)
     }
 
     override func tearDown() {
