@@ -7,21 +7,25 @@
 
 import SwiftUI
 
+/// A button that saves changes and dismisses the view.
 struct SaveChangesButton: View {
     @Environment(\.presentationMode) var presentationMode
     var viewModel: EditAlarmViewModel
+    var onDismiss: () -> Void
     
     var body: some View {
         Button("Save Changes") {
+            print("Save Changes button pressed.")
             print("Before saving, time: \(viewModel.time)")
             viewModel.saveChanges()
-            DispatchQueue.main.async {
-                presentationMode.wrappedValue.dismiss()
-            }
+            onDismiss()
+            print("View dismissed.")
         }
     }
 }
 
 #Preview {
-    SaveChangesButton(viewModel: EditAlarmViewModel(alarms: .constant([]), alarm: Alarm.example, notificationManager: NotificationManager()))
+    SaveChangesButton(viewModel: EditAlarmViewModel(alarms: .constant([]), alarm: Alarm.example, alarmManager: MockAlarmManager())) {
+        print("Preview: View dismissed.")
+    }
 }

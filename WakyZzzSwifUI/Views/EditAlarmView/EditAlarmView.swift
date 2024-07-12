@@ -7,12 +7,18 @@
 
 import SwiftUI
 
+/// A view for editing an existing alarm.
 struct EditAlarmView: View {
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: EditAlarmViewModel
-    
-    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationManager: NotificationManager) {
-        self.viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, notificationManager: notificationManager)
+    @Environment(\.presentationMode) var presentationMode
+
+    /// Initializes the view with the necessary parameters.
+    /// - Parameters:
+    ///   - alarms: The binding to the list of alarms.
+    ///   - alarm: The alarm to be edited.
+    ///   - alarmManager: The alarm manager to handle alarm-related tasks.
+    init(alarms: Binding<[Alarm]>, alarm: Alarm, alarmManager: AlarmManagerProtocol) {
+        self.viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, alarmManager: alarmManager)
     }
     
     var body: some View {
@@ -21,10 +27,15 @@ struct EditAlarmView: View {
                 AlarmTimePickerView(time: $viewModel.time)
                 RepeatDaysSectionView(repeatDays: $viewModel.repeatDays)
                 AlarmToggleView(isEnabled: $viewModel.isEnabled)
-                SaveChangesButton(viewModel: viewModel)
+                SaveChangesButton(viewModel: viewModel, onDismiss: {
+                    presentationMode.wrappedValue.dismiss()
+                })
             }
             .navigationTitle("Edit Alarm")
             .navigationBarItems(trailing: CancelButton())
+        }
+        .onAppear {
+            print("EditAlarmView initialized with alarm time: \(viewModel.time)")
         }
     }
 }
@@ -32,6 +43,6 @@ struct EditAlarmView: View {
 struct EditAlarmView_Previews: PreviewProvider {
     @State static var alarms: [Alarm] = [Alarm.example]
     static var previews: some View {
-        EditAlarmView(alarms: $alarms, alarm: Alarm.example, notificationManager: NotificationManager())
+        EditAlarmView(alarms: $alarms, alarm: Alarm.example, alarmManager: MockAlarmManager())
     }
 }

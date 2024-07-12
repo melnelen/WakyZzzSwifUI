@@ -13,6 +13,7 @@ struct CancelButton: View {
 
     var body: some View {
         Button("Cancel") {
+            print("Cancel button pressed.")
             presentationMode.wrappedValue.dismiss()
         }
     }

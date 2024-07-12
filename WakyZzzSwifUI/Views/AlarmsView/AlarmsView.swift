@@ -47,7 +47,7 @@ struct AlarmsView: View {
             }
             .sheet(item: $viewModel.selectedAlarm) { alarm in
                 // Show the edit alarm view as a sheet
-                EditAlarmView(alarms: $viewModel.alarms, alarm: alarm, notificationManager: viewModel.notificationManager)
+                EditAlarmView(alarms: $viewModel.alarms, alarm: alarm, alarmManager: viewModel.alarmManager)
             }
             .alert(isPresented: $viewModel.showingAlarmAlert) {
                 // Show an alert for the alarm
@@ -60,4 +60,5 @@ struct AlarmsView: View {
 #Preview {
     // Preview provider to display the view in Xcode's canvas
     AlarmsView(notificationManager: NotificationManager(), alarmManager: MockAlarmManager())
+        .environmentObject(NotificationManager())
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 class EditAlarmViewModel: ObservableObject {
     @Published var alarm: Alarm
@@ -14,16 +15,28 @@ class EditAlarmViewModel: ObservableObject {
     @Published var isEnabled: Bool
     
     private var alarms: Binding<[Alarm]>
-    var notificationManager: NotificationManager
+    var alarmManager: AlarmManagerProtocol
     
-    init(alarms: Binding<[Alarm]>, alarm: Alarm, notificationManager: NotificationManager) {
+    init(alarms: Binding<[Alarm]>, alarm: Alarm, alarmManager: AlarmManagerProtocol) {
         self.alarms = alarms
-        self.notificationManager = notificationManager
+        self.alarmManager = alarmManager
         
+        // Initialize alarm properties first
         self.alarm = alarm
         self.repeatDays = alarm.repeatDays
         self.isEnabled = alarm.isEnabled
-        self.time = alarm.time
+
+        // Then, handle the time initialization
+        if alarm.time <= Date.distantPast {
+            var components = DateComponents()
+            components.hour = 8
+            components.minute = 0
+            var defaultTime = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+            defaultTime = Calendar.current.nextDate(after: defaultTime, matching: components, matchingPolicy: .nextTime) ?? defaultTime
+            self.time = defaultTime
+        } else {
+            self.time = alarm.time
+        }
         
         print("Initialized EditAlarmViewModel with time: \(self.time)")
     }
@@ -43,6 +56,6 @@ class EditAlarmViewModel: ObservableObject {
             print("Added new alarm: \(alarm)")
         }
         
-        notificationManager.alarmManager.updateAlarm(alarm: alarm, isEnabled: isEnabled)
+        alarmManager.updateAlarm(alarm: alarm, isEnabled: isEnabled)
     }
 }

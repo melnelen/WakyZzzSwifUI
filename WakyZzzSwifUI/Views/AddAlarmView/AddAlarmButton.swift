@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct AddAlarmButton: View {
-    @Environment(\.presentationMode) var presentationMode
     var viewModel: AddAlarmViewModel
 
     var body: some View {
         Button("Add Alarm") {
+            print("Add Alarm button pressed.")
             viewModel.addAlarm()
-            presentationMode.wrappedValue.dismiss()
         }
     }
 }
 
-#Preview {
-    AddAlarmButton(viewModel: AddAlarmViewModel(alarms: .constant([]), isPresented: .constant(false)))
+struct AddAlarmButton_Previews: PreviewProvider {
+    static var previews: some View {
+        AddAlarmButton(viewModel: AddAlarmViewModel(alarms: .constant([]), isPresented: .constant(false)))
+    }
 }
