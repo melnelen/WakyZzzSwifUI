@@ -60,5 +60,4 @@ struct AlarmsView: View {
 #Preview {
     // Preview provider to display the view in Xcode's canvas
     AlarmsView(notificationManager: NotificationManager(), alarmManager: MockAlarmManager())
-        .environmentObject(NotificationManager())
 }

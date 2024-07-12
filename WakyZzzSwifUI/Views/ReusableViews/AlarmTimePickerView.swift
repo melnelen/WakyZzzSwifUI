@@ -12,6 +12,7 @@ struct AlarmTimePickerView: View {
     
     var body: some View {
         DatePicker("Alarm Time", selection: $time, displayedComponents: .hourAndMinute)
+            .datePickerStyle(WheelDatePickerStyle())
             .onChange(of: time) { _, newValue in
                 print("DatePicker changed time to: \(newValue)")
             }

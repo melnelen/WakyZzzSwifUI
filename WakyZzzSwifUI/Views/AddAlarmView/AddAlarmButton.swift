@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct AddAlarmButton: View {
+    @Environment(\.presentationMode) var presentationMode
     var viewModel: AddAlarmViewModel
 
     var body: some View {
         Button("Add Alarm") {
             viewModel.addAlarm()
+            presentationMode.wrappedValue.dismiss()
         }
     }
 }

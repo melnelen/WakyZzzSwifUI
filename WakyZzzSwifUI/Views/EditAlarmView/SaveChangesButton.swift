@@ -12,10 +12,12 @@ struct SaveChangesButton: View {
     var viewModel: EditAlarmViewModel
     
     var body: some View {
-        Button("Edit Alarm") {
+        Button("Save Changes") {
             print("Before saving, time: \(viewModel.time)")
             viewModel.saveChanges()
-            presentationMode.wrappedValue.dismiss()
+            DispatchQueue.main.async {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

@@ -7,14 +7,17 @@
 
 import SwiftUI
 
+/// A button that performs a cancel action, dismissing the current view.
 struct CancelButton: View {
-    let action: () -> Void
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
-        Button("Cancel", action: action)
+        Button("Cancel") {
+            presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
 #Preview {
-    CancelButton(action: {})
+    CancelButton()
 }

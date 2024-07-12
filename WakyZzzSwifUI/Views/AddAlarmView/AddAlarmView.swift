@@ -23,7 +23,7 @@ struct AddAlarmView: View {
                 AddAlarmButton(viewModel: viewModel)
             }
             .navigationTitle("Add Alarm")
-            .navigationBarItems(trailing: CancelButton { viewModel.cancel() })
+            .navigationBarItems(trailing: CancelButton())
         }
     }
 }

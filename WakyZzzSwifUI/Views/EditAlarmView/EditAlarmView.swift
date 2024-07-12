@@ -24,9 +24,7 @@ struct EditAlarmView: View {
                 SaveChangesButton(viewModel: viewModel)
             }
             .navigationTitle("Edit Alarm")
-            .navigationBarItems(trailing: CancelButton {
-                presentationMode.wrappedValue.dismiss()
-            })
+            .navigationBarItems(trailing: CancelButton())
         }
     }
 }
