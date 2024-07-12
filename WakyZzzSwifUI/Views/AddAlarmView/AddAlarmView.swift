@@ -11,6 +11,7 @@ import SwiftUI
 struct AddAlarmView: View {
     /// The view model that manages the state and behavior of the add alarm functionality.
     @ObservedObject var viewModel: AddAlarmViewModel
+    @Environment(\.presentationMode) var presentationMode
 
     /// Initializes the view with a binding to the list of alarms and a binding to the presentation state.
     /// - Parameters:
@@ -37,7 +38,11 @@ struct AddAlarmView: View {
                 AddAlarmButton(viewModel: viewModel)
             }
             .navigationTitle("Add Alarm")
-            .navigationBarItems(trailing: CancelButton())
+            .navigationBarItems(trailing: CancelButton {
+                print("Cancel button pressed.")
+                presentationMode.wrappedValue.dismiss()
+                print("View should be dismissed.")
+            })
         }
     }
 }

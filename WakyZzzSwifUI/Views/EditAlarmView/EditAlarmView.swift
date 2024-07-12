@@ -32,7 +32,11 @@ struct EditAlarmView: View {
                 })
             }
             .navigationTitle("Edit Alarm")
-            .navigationBarItems(trailing: CancelButton())
+            .navigationBarItems(trailing: CancelButton {
+                print("Cancel button pressed.")
+                presentationMode.wrappedValue.dismiss()
+                print("View should be dismissed.")
+            })
         }
         .onAppear {
             print("EditAlarmView initialized with alarm time: \(viewModel.time)")
