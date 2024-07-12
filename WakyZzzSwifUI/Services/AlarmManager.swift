@@ -26,7 +26,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
     func addAlarm(_ alarm: Alarm) {
         if isValidDate(alarm.time) {
             alarms.append(alarm)
-            alarms.sort { $0.time < $1.time }
+            sortAlarms()
             scheduleAlarm(alarm: alarm)
             print("Added alarm: \(alarm)")
         } else {
@@ -37,7 +37,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
     func updateAlarm(alarm: Alarm, isEnabled: Bool) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }), isValidDate(alarm.time) {
             alarms[index] = alarm
-            alarms.sort { $0.time < $1.time }
+            sortAlarms()
             if isEnabled {
                 enableAlarm(alarm: alarm)
             } else {
@@ -147,6 +147,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([Alarm].self, from: savedAlarms) {
                 alarms = decoded
+                sortAlarms() // Ensure alarms are sorted after loading
             }
         }
     }
@@ -158,7 +159,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         content.sound = UNNotificationSound(named: UNNotificationSoundName("sound.mp3"))
         content.categoryIdentifier = "ALARM_CATEGORY"
         
-        // Change time interval for tests 
+        // Change time interval for tests
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: "\(alarm.id)", content: content, trigger: trigger)
         
@@ -175,4 +176,22 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
             NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
         }
     }
+    
+    private func sortAlarms() {
+        alarms.sort { $0.time.timeOfDay < $1.time.timeOfDay }
+    }
 }
+
+extension Date {
+    var timeOfDay: Date {
+        return Calendar.current.date(bySettingHour: Calendar.current.component(.hour, from: self), minute: Calendar.current.component(.minute, from: self), second: 0, of: self) ?? self
+    }
+}
+
+//extension Date {
+//    var timeOfDay: TimeInterval {
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.hour, .minute, .second], from: self)
+//        return TimeInterval(components.hour! * 3600 + components.minute! * 60 + components.second!)
+//    }
+//}

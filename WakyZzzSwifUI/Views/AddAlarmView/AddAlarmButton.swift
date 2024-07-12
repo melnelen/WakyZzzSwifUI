@@ -20,6 +20,6 @@ struct AddAlarmButton: View {
 
 struct AddAlarmButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddAlarmButton(viewModel: AddAlarmViewModel(alarms: .constant([]), isPresented: .constant(false)))
+        AddAlarmButton(viewModel: AddAlarmViewModel(alarms: .constant([]), isPresented: .constant(false), alarmManager: AlarmManager()))
     }
 }

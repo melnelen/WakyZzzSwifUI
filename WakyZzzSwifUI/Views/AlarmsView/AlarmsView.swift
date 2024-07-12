@@ -54,6 +54,9 @@ struct AlarmsView: View {
                 viewModel.alarmAlert
             }
         }
+        .onAppear {
+            viewModel.updateAlarms()
+        }
     }
 }
 

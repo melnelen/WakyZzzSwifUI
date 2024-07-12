@@ -9,33 +9,50 @@ import SwiftUI
 
 class AddAlarmViewModel: ObservableObject {
     @Published var time: Date
-    @Published var repeatDays: [String] = []
-    @Published var isEnabled: Bool = true
+    @Published var repeatDays: [String]
+    @Published var isEnabled: Bool
     
-    @Binding var alarms: [Alarm]
+    private var alarms: Binding<[Alarm]>
+    var isPresented: Binding<Bool>
+    var alarmManager: AlarmManagerProtocol
     
-    private var isPresented: Binding<Bool>
-    private var alarmManager: AlarmManagerProtocol
-    
-    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager()) {
-        self._alarms = alarms
+    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol) {
+        self.alarms = alarms
         self.isPresented = isPresented
         self.alarmManager = alarmManager
+        
+        // Initialize properties
+        self.repeatDays = []
+        self.isEnabled = true
 
+        // Set default alarm time to 8 AM the next day
+        let calendar = Calendar.current
         var components = DateComponents()
         components.hour = 8
         components.minute = 0
-        self.time = Calendar.current.nextDate(after: Date(), matching: components, matchingPolicy: .nextTime) ?? Date()
+        if let defaultTime = calendar.nextDate(after: Date(), matching: components, matchingPolicy: .nextTime) {
+            self.time = defaultTime
+        } else {
+            self.time = Date()
+        }
     }
-
+    
     func addAlarm() {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        let alarmTimeComponents = calendar.dateComponents([.hour, .minute], from: time)
+        let currentTimeComponents = calendar.dateComponents([.hour, .minute], from: currentDate)
+        
+        // If the alarm time is later than the current time today, set the alarm day to today
+        if alarmTimeComponents.hour! > currentTimeComponents.hour! ||
+           (alarmTimeComponents.hour! == currentTimeComponents.hour! && alarmTimeComponents.minute! > currentTimeComponents.minute!) {
+            let todayComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+            self.time = calendar.date(bySettingHour: alarmTimeComponents.hour!, minute: alarmTimeComponents.minute!, second: 0, of: calendar.date(from: todayComponents)!)!
+        }
+        
         let newAlarm = Alarm(time: time, repeatDays: repeatDays, isEnabled: isEnabled)
-        alarms.append(newAlarm)
         alarmManager.addAlarm(newAlarm)
-        isPresented.wrappedValue = false
-    }
-
-    func cancel() {
+        alarms.wrappedValue.append(newAlarm)
         isPresented.wrappedValue = false
     }
 }

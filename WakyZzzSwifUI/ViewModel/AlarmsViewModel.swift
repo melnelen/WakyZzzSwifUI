@@ -41,7 +41,7 @@ class AlarmsViewModel: ObservableObject {
     init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol) {
         self.notificationManager = notificationManager
         self.alarmManager = alarmManager
-        self.alarms = alarmManager.alarms
+        self.updateAlarms()
         NotificationCenter.default.addObserver(forName: Notification.Name("AlarmTriggered"), object: nil, queue: .main) { notification in
             if let alarmID = notification.object as? String {
                 self.activeAlarmID = alarmID
@@ -54,12 +54,17 @@ class AlarmsViewModel: ObservableObject {
         }
     }
     
+    func updateAlarms() {
+        self.alarms = alarmManager.alarms
+        self.alarms.sort { $0.time.timeOfDay < $1.time.timeOfDay }
+    }
+    
     func deleteAlarm(at offsets: IndexSet) {
         offsets.forEach { index in
             let alarm = alarms[index]
             alarmManager.removeAlarm(alarm)
         }
-        self.alarms = alarmManager.alarms
+        updateAlarms()
     }
     
     func scheduleTestAlarm() {
@@ -67,7 +72,7 @@ class AlarmsViewModel: ObservableObject {
         let testAlarmTime = Calendar.current.date(byAdding: .second, value: 1, to: now) ?? now
         let testAlarm = Alarm(time: testAlarmTime, repeatDays: [], isEnabled: true)
         alarmManager.addAlarm(testAlarm)
-        self.alarms = alarmManager.alarms
+        updateAlarms()
         print("Scheduled test alarm for 1 second later with ID: \(testAlarm.id)")
     }
     
@@ -78,13 +83,13 @@ class AlarmsViewModel: ObservableObject {
                 self.showRandomActOfKindness = true
             }
         }
-        self.alarms = alarmManager.alarms
+        updateAlarms()
     }
     
     func toggleEnabled(for alarm: Alarm, isEnabled: Bool) {
         var updatedAlarm = alarm
         updatedAlarm.isEnabled = !isEnabled
         alarmManager.updateAlarm(alarm: alarm, isEnabled: updatedAlarm.isEnabled)
-        self.alarms = alarmManager.alarms
+        updateAlarms()
     }
 }
