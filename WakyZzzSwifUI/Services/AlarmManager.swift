@@ -19,7 +19,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
     
     var randomActsOfKindness: [String] = RandomActsOfKindnessLoader.loadRandomActsOfKindness()
     
-    init() {
+    private init() {
         loadAlarms()
     }
     

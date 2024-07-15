@@ -13,7 +13,7 @@ class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterD
     @Published var showRandomActOfKindness: Bool = false
     @Published var randomActTask: String = ""
     
-    let alarmManager = AlarmManager()
+    let alarmManager = AlarmManager.shared
     
     override init() {
         super.init()
