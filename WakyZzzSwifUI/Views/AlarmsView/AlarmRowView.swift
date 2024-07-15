@@ -9,13 +9,13 @@ import SwiftUI
 
 /// A view that represents a single row for an alarm in the alarm list.
 struct AlarmRowView: View {
+    @ObservedObject var viewModel: AlarmsViewModel
     var alarm: Alarm
-    var toggleEnabled: (Bool) -> Void
     @State private var isEnabled: Bool
 
-    init(alarm: Alarm, toggleEnabled: @escaping (Bool) -> Void) {
+    init(viewModel: AlarmsViewModel, alarm: Alarm) {
+        self.viewModel = viewModel
         self.alarm = alarm
-        self.toggleEnabled = toggleEnabled
         self._isEnabled = State(initialValue: alarm.isEnabled)
     }
 
@@ -32,7 +32,7 @@ struct AlarmRowView: View {
             // Toggle to enable or disable the alarm
             Toggle("", isOn: $isEnabled)
                 .onChange(of: isEnabled) { _, newValue in
-                    toggleEnabled(newValue)
+                    viewModel.toggleEnabled(for: alarm, isEnabled: newValue)
                 }
                 .accessibilityLabel(isEnabled ? "Disable alarm" : "Enable alarm")
                 .accessibilityHint("Toggle the alarm on or off")
@@ -44,7 +44,9 @@ struct AlarmRowView: View {
 #Preview {
     // Sample alarm for preview
     let sampleAlarm = Alarm(time: Date(), isEnabled: true)
+    let mockNotificationManager = NotificationManager()
+    let mockAlarmManager = MockAlarmManager()
 
     // Preview for AlarmRowView with sample data
-    return AlarmRowView(alarm: sampleAlarm, toggleEnabled: { _ in })
+    return AlarmRowView(viewModel: AlarmsViewModel(notificationManager: mockNotificationManager, alarmManager: mockAlarmManager), alarm: sampleAlarm)
 }

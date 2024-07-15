@@ -11,12 +11,13 @@ import SwiftUI
 
 class AlarmsViewModelTests: XCTestCase {
     var viewModel: AlarmsViewModel!
-    var mockAlarmManager: MockAlarmManager!
+    var mockAlarmManager: AlarmManagerProtocol!
     var mockNotificationManager: MockNotificationManager!
 
     override func setUp() {
         super.setUp()
-        mockAlarmManager = MockAlarmManager()
+        mockAlarmManager = AlarmManager.shared
+        mockAlarmManager.alarms = []  // Reset alarms before each test
         mockNotificationManager = MockNotificationManager()
         viewModel = AlarmsViewModel(notificationManager: mockNotificationManager, alarmManager: mockAlarmManager)
     }
@@ -54,5 +55,44 @@ class AlarmsViewModelTests: XCTestCase {
         viewModel.snoozeAlarm(alarm: alarm)
         
         XCTAssertEqual(viewModel.alarms.first?.snoozeCount, 1)
+    }
+    
+    func testDeleteAlarm() {
+        let alarm = Alarm(time: Date().addingTimeInterval(3600), repeatDays: [], isEnabled: true)
+        mockAlarmManager.addAlarm(alarm)
+        viewModel.alarms = mockAlarmManager.alarms
+        
+        let initialCount = viewModel.alarms.count
+        
+        
+        viewModel.deleteAlarm(at: IndexSet(integer: 0))
+        
+        XCTAssertEqual(mockAlarmManager.alarms.count, initialCount - 1)
+        XCTAssertFalse(mockAlarmManager.alarms.contains(alarm))
+    }
+
+    func testToggleEnabled() {
+        let alarm = Alarm(time: Date().addingTimeInterval(3600), repeatDays: [], isEnabled: true)
+        mockAlarmManager.addAlarm(alarm)
+        viewModel.alarms = mockAlarmManager.alarms
+        XCTAssertTrue(viewModel.alarms.first!.isEnabled)
+        
+        viewModel.toggleEnabled(for: alarm, isEnabled: false)
+        viewModel.alarms = mockAlarmManager.alarms
+        
+        XCTAssertFalse(viewModel.alarms.first!.isEnabled)
+        
+        viewModel.toggleEnabled(for: alarm, isEnabled: true)
+        viewModel.alarms = mockAlarmManager.alarms
+        
+        XCTAssertTrue(viewModel.alarms.first!.isEnabled)
+    }
+
+    func testAlarmAlert() {
+        let alarmID = UUID().uuidString
+        NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: alarmID)
+        
+        XCTAssertEqual(viewModel.activeAlarmID, alarmID)
+        XCTAssertTrue(viewModel.showingAlarmAlert)
     }
 }
