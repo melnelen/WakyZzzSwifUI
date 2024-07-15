@@ -9,6 +9,8 @@ import SwiftUI
 import UserNotifications
 
 class AlarmManager: ObservableObject, AlarmManagerProtocol {
+    static let shared = AlarmManager()
+    
     @Published var alarms: [Alarm] = [] {
         didSet {
             saveAlarms()
@@ -147,7 +149,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([Alarm].self, from: savedAlarms) {
                 alarms = decoded
-                sortAlarms() // Ensure alarms are sorted after loading
+                sortAlarms()
             }
         }
     }
@@ -178,20 +180,13 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
     }
     
     private func sortAlarms() {
-        alarms.sort { $0.time.timeOfDay < $1.time.timeOfDay }
+        alarms.sort { $0.time.timeInMinutes < $1.time.timeInMinutes }
     }
 }
 
 extension Date {
-    var timeOfDay: Date {
-        return Calendar.current.date(bySettingHour: Calendar.current.component(.hour, from: self), minute: Calendar.current.component(.minute, from: self), second: 0, of: self) ?? self
+    var timeInMinutes: Int {
+        return Calendar.current.component(.hour, from: self) * 60
+        + Calendar.current.component(.minute, from: self)
     }
 }
-
-//extension Date {
-//    var timeOfDay: TimeInterval {
-//        let calendar = Calendar.current
-//        let components = calendar.dateComponents([.hour, .minute, .second], from: self)
-//        return TimeInterval(components.hour! * 3600 + components.minute! * 60 + components.second!)
-//    }
-//}

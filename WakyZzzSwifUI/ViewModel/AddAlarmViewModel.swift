@@ -16,7 +16,7 @@ class AddAlarmViewModel: ObservableObject {
     var isPresented: Binding<Bool>
     var alarmManager: AlarmManagerProtocol
     
-    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol) {
+    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.alarms = alarms
         self.isPresented = isPresented
         self.alarmManager = alarmManager

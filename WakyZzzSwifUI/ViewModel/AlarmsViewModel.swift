@@ -38,10 +38,10 @@ class AlarmsViewModel: ObservableObject {
         )
     }
     
-    init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol) {
+    init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.notificationManager = notificationManager
         self.alarmManager = alarmManager
-        self.updateAlarms()
+        self.alarms = alarmManager.alarms
         NotificationCenter.default.addObserver(forName: Notification.Name("AlarmTriggered"), object: nil, queue: .main) { notification in
             if let alarmID = notification.object as? String {
                 self.activeAlarmID = alarmID
@@ -52,11 +52,6 @@ class AlarmsViewModel: ObservableObject {
             self.randomActTask = alarmManager.randomActsOfKindness.randomElement() ?? "Do something kind!"
             self.showRandomActOfKindness = true
         }
-    }
-    
-    func updateAlarms() {
-        self.alarms = alarmManager.alarms
-        self.alarms.sort { $0.time.timeOfDay < $1.time.timeOfDay }
     }
     
     func deleteAlarm(at offsets: IndexSet) {
@@ -91,5 +86,9 @@ class AlarmsViewModel: ObservableObject {
         updatedAlarm.isEnabled = !isEnabled
         alarmManager.updateAlarm(alarm: alarm, isEnabled: updatedAlarm.isEnabled)
         updateAlarms()
+    }
+    
+    func updateAlarms() {
+        self.alarms = alarmManager.alarms
     }
 }

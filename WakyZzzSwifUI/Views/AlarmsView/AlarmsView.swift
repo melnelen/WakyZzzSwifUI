@@ -16,7 +16,7 @@ struct AlarmsView: View {
     /// - Parameters:
     ///   - notificationManager: The notification manager to handle notification-related tasks.
     ///   - alarmManager: The alarm manager to handle alarm-related tasks.
-    init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol) {
+    init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         _viewModel = StateObject(wrappedValue: AlarmsViewModel(notificationManager: notificationManager, alarmManager: alarmManager))
     }
     

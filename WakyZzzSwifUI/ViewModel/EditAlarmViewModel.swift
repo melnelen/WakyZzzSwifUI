@@ -17,7 +17,7 @@ class EditAlarmViewModel: ObservableObject {
     private var alarms: Binding<[Alarm]>
     var alarmManager: AlarmManagerProtocol
     
-    init(alarms: Binding<[Alarm]>, alarm: Alarm, alarmManager: AlarmManagerProtocol) {
+    init(alarms: Binding<[Alarm]>, alarm: Alarm, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.alarms = alarms
         self.alarmManager = alarmManager
         
