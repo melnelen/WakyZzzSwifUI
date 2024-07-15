@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 class RandomActOfKindnessViewModel: ObservableObject {
     @Published var showingView: Bool = false

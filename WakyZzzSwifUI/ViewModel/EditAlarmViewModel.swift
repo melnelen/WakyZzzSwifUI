@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 class EditAlarmViewModel: ObservableObject {
     @Published var alarm: Alarm

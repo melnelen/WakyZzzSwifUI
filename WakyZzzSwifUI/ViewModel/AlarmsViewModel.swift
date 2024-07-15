@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 class AlarmsViewModel: ObservableObject {
     @Published var alarms: [Alarm] = []

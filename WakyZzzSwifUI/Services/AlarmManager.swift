@@ -131,20 +131,20 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
-    private func isValidDate(_ date: Date) -> Bool {
+    func isValidDate(_ date: Date) -> Bool {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year], from: date)
         return components.year! > 1
     }
     
-    private func saveAlarms() {
+    func saveAlarms() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(alarms) {
             UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
         }
     }
     
-    private func loadAlarms() {
+    func loadAlarms() {
         if let savedAlarms = UserDefaults.standard.data(forKey: userDefaultsKey) {
             let decoder = JSONDecoder()
             if let decoded = try? decoder.decode([Alarm].self, from: savedAlarms) {
@@ -154,7 +154,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
-    private func playEvilSound(alarm: Alarm) {
+    func playEvilSound(alarm: Alarm) {
         let content = UNMutableNotificationContent()
         content.title = "Evil Alarm"
         content.body = "You must complete a random act of kindness to turn off this alarm."
@@ -179,7 +179,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
-    private func sortAlarms() {
+    func sortAlarms() {
         alarms.sort { $0.time.timeInMinutes < $1.time.timeInMinutes }
     }
 }

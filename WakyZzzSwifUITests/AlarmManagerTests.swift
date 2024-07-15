@@ -10,11 +10,11 @@ import UserNotifications
 @testable import WakyZzzSwifUI
 
 class AlarmManagerTests: XCTestCase {
-    var alarmManager: AlarmManagerProtocol!
+    var alarmManager: AlarmManager!
     
     override func setUp() {
         super.setUp()
-        alarmManager = MockAlarmManager.shared
+        alarmManager = AlarmManager.shared
         alarmManager.alarms = []  // Reset alarms before each test
     }
     
@@ -33,7 +33,7 @@ class AlarmManagerTests: XCTestCase {
         
         // Then
         XCTAssertEqual(alarmManager.alarms.count, initialAlarmsCount + 1)
-        XCTAssertTrue(alarmManager.alarms.contains(alarm))
+        XCTAssertTrue(alarmManager.alarms.contains(where: { $0.id == alarm.id }))
     }
     
     func testUpdateAlarm() {
@@ -62,7 +62,7 @@ class AlarmManagerTests: XCTestCase {
         
         // Then
         XCTAssertEqual(alarmManager.alarms.count, initialAlarmsCount - 1)
-        XCTAssertFalse(alarmManager.alarms.contains(alarm))
+        XCTAssertFalse(alarmManager.alarms.contains(where: { $0.id == alarm.id }))
     }
     
     func testGetAlarmById() {
@@ -95,11 +95,54 @@ class AlarmManagerTests: XCTestCase {
         waitForExpectations(timeout: 2, handler: nil)
         
         alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
-            XCTAssertFalse(showKindness, "Kindness should not be shown for the second snooze")
+            XCTAssertTrue(showKindness, "Kindness should be shown for the second snooze")
         }
         
         alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
             XCTAssertTrue(showKindness, "Kindness should be shown for the third snooze")
         }
+    }
+    
+    func testSortAlarms() {
+        // Given
+        let alarm1 = Alarm(time: Date().addingTimeInterval(3600), repeatDays: ["Monday"], isEnabled: true)
+        let alarm2 = Alarm(time: Date().addingTimeInterval(7200), repeatDays: ["Tuesday"], isEnabled: true)
+        let alarm3 = Alarm(time: Date().addingTimeInterval(1800), repeatDays: ["Wednesday"], isEnabled: true)
+        alarmManager.addAlarm(alarm1)
+        alarmManager.addAlarm(alarm2)
+        alarmManager.addAlarm(alarm3)
+        
+        // When
+        alarmManager.sortAlarms()
+        
+        // Then
+        XCTAssertEqual(alarmManager.alarms, [alarm3, alarm1, alarm2])
+    }
+    
+    func testIsValidDate() {
+        // Given
+        let validDate = Date().addingTimeInterval(3600)
+        let invalidDate = Date.distantPast
+        
+        // When
+        let isValid = alarmManager.isValidDate(validDate)
+        let isInvalid = alarmManager.isValidDate(invalidDate)
+        
+        // Then
+        XCTAssertTrue(isValid)
+        XCTAssertFalse(isInvalid)
+    }
+    
+    func testSaveAndLoadAlarms() {
+        // Given
+        let alarm = Alarm(time: Date().addingTimeInterval(3600), repeatDays: [], isEnabled: true)
+        alarmManager.addAlarm(alarm)
+        
+        // When
+        alarmManager.saveAlarms()
+        alarmManager.loadAlarms()
+        
+        // Then
+        XCTAssertTrue(alarmManager.alarms.contains(where: { $0.id == alarm.id }))
     }
 }

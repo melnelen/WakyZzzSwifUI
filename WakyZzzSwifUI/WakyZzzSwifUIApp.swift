@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 @main
 struct WakyZzzSwiftUIApp: App {
