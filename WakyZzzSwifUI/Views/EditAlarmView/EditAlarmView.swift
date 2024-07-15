@@ -18,7 +18,7 @@ struct EditAlarmView: View {
     ///   - alarm: The alarm to be edited.
     ///   - alarmManager: The alarm manager to handle alarm-related tasks.
     init(alarms: Binding<[Alarm]>, alarm: Alarm, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
-        self.viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, alarmManager: alarmManager)
+        self.viewModel = EditAlarmViewModel(alarm: alarm, alarmManager: alarmManager)
     }
     
     var body: some View {

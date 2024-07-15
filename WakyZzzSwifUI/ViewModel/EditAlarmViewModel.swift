@@ -14,11 +14,9 @@ class EditAlarmViewModel: ObservableObject {
     @Published var repeatDays: [String]
     @Published var isEnabled: Bool
     
-    private var alarms: Binding<[Alarm]>
     var alarmManager: AlarmManagerProtocol
     
-    init(alarms: Binding<[Alarm]>, alarm: Alarm, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
-        self.alarms = alarms
+    init(alarm: Alarm, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.alarmManager = alarmManager
         
         // Initialize alarm properties first
@@ -45,17 +43,6 @@ class EditAlarmViewModel: ObservableObject {
         alarm.time = time
         alarm.repeatDays = repeatDays
         alarm.isEnabled = isEnabled
-
-        if let index = alarms.wrappedValue.firstIndex(where: { $0.id == alarm.id }) {
-            print("Saving changes for alarm at index \(index)")
-            alarms.wrappedValue[index] = alarm
-            print("Updated alarm in array: \(alarms.wrappedValue[index])")
-        } else {
-            print("Alarm not found! Adding new alarm.")
-            alarms.wrappedValue.append(alarm)
-            print("Added new alarm: \(alarm)")
-        }
-        
         alarmManager.updateAlarm(alarm: alarm, isEnabled: isEnabled)
     }
 }

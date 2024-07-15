@@ -19,7 +19,7 @@ struct AddAlarmView: View {
     ///   - isPresented: A binding to the presentation state of the view.
     ///   - alarmManager: The alarm manager to handle alarm-related tasks, default is an instance of `AlarmManager`.
     init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
-            self.viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented, alarmManager: alarmManager)
+            self.viewModel = AddAlarmViewModel(isPresented: isPresented, alarmManager: alarmManager)
         }
 
     var body: some View {

@@ -12,12 +12,10 @@ class AddAlarmViewModel: ObservableObject {
     @Published var repeatDays: [String]
     @Published var isEnabled: Bool
     
-    private var alarms: Binding<[Alarm]>
     var isPresented: Binding<Bool>
     var alarmManager: AlarmManagerProtocol
     
-    init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
-        self.alarms = alarms
+    init(isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.isPresented = isPresented
         self.alarmManager = alarmManager
         
@@ -52,7 +50,6 @@ class AddAlarmViewModel: ObservableObject {
         
         let newAlarm = Alarm(time: time, repeatDays: repeatDays, isEnabled: isEnabled)
         alarmManager.addAlarm(newAlarm)
-        alarms.wrappedValue.append(newAlarm)
         isPresented.wrappedValue = false
     }
 }

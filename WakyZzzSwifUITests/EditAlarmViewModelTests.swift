@@ -18,11 +18,9 @@ class EditAlarmViewModelTests: XCTestCase {
     func testInitialization() {
         // Given
         let alarm = Alarm(time: Date(), repeatDays: ["Monday"], isEnabled: true)
-        let alarms = binding([alarm])
-        let notificationManager = MockNotificationManager()
         
         // When
-        let viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, notificationManager: notificationManager)
+        let viewModel = EditAlarmViewModel(alarm: alarm)
         
         // Then
         XCTAssertEqual(viewModel.alarm.id, alarm.id)
@@ -34,9 +32,7 @@ class EditAlarmViewModelTests: XCTestCase {
     func testSaveChanges() {
         // Given
         let alarm = Alarm(time: Date(), repeatDays: ["Monday"], isEnabled: true)
-        let alarms = binding([alarm])
-        let notificationManager = MockNotificationManager()
-        let viewModel = EditAlarmViewModel(alarms: alarms, alarm: alarm, notificationManager: notificationManager)
+        let viewModel = EditAlarmViewModel(alarm: alarm)
         
         // When
         viewModel.time = Calendar.current.date(byAdding: .hour, value: 1, to: Date()) ?? Date()

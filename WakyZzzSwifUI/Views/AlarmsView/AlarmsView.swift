@@ -30,10 +30,16 @@ struct AlarmsView: View {
             .sheet(isPresented: $viewModel.showingAddAlarmView) {
                 // Show the add alarm view as a sheet
                 AddAlarmView(alarms: $viewModel.alarms, isPresented: $viewModel.showingAddAlarmView)
+                    .onDisappear() {
+                        viewModel.updateAlarms()
+                    }
             }
             .sheet(item: $viewModel.selectedAlarm) { alarm in
                 // Show the edit alarm view as a sheet
                 EditAlarmView(alarms: $viewModel.alarms, alarm: alarm, alarmManager: viewModel.alarmManager)
+                    .onDisappear() {
+                        viewModel.updateAlarms()
+                    }
             }
             .alert(isPresented: $viewModel.showingAlarmAlert) {
                 // Show an alert for the alarm

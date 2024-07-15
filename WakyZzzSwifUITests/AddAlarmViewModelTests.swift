@@ -30,7 +30,7 @@ class AddAlarmViewModelTests: XCTestCase {
     
     func testAddAlarmIncreasesAlarmManagerAlarmsCount() {
         // Given
-        viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented, alarmManager: alarmManager)
+        viewModel = AddAlarmViewModel(isPresented: isPresented, alarmManager: alarmManager)
         let initialAlarmsCount = alarmManager.alarms.count
         viewModel.time = Date().addingTimeInterval(3600)
         viewModel.repeatDays = ["Tuesday", "Thursday"]
@@ -45,25 +45,13 @@ class AddAlarmViewModelTests: XCTestCase {
     
     func testAddAlarmDismissesView() {
         // Given
-        viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented, alarmManager: alarmManager)
+        viewModel = AddAlarmViewModel(isPresented: isPresented, alarmManager: alarmManager)
         viewModel.time = Date().addingTimeInterval(18000)
         viewModel.repeatDays = ["Tuesday"]
         viewModel.isEnabled = true
         
         // When
         viewModel.addAlarm()
-        
-        // Then
-        XCTAssertFalse(isPresented.wrappedValue)
-    }
-    
-    func testCancel() {
-        // Given
-        isPresented.wrappedValue = true
-        viewModel = AddAlarmViewModel(alarms: alarms, isPresented: isPresented, alarmManager: alarmManager)
-        
-        // When
-        viewModel.cancel()
         
         // Then
         XCTAssertFalse(isPresented.wrappedValue)

@@ -8,6 +8,8 @@
 import Foundation
 
 class MockAlarmManager: AlarmManagerProtocol {
+    static let shared = MockAlarmManager()
+    
     var alarms: [Alarm] = []
     var randomActsOfKindness: [String] = RandomActsOfKindnessLoader.loadRandomActsOfKindness()
     

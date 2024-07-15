@@ -10,11 +10,11 @@ import UserNotifications
 @testable import WakyZzzSwifUI
 
 class AlarmManagerTests: XCTestCase {
-    var alarmManager: AlarmManager!
+    var alarmManager: AlarmManagerProtocol!
     
     override func setUp() {
         super.setUp()
-        alarmManager = AlarmManager()
+        alarmManager = MockAlarmManager.shared
         alarmManager.alarms = []  // Reset alarms before each test
     }
     

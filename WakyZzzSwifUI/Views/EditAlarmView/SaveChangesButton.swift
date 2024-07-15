@@ -25,7 +25,7 @@ struct SaveChangesButton: View {
 }
 
 #Preview {
-    SaveChangesButton(viewModel: EditAlarmViewModel(alarms: .constant([]), alarm: Alarm.example, alarmManager: MockAlarmManager())) {
+    SaveChangesButton(viewModel: EditAlarmViewModel(alarm: Alarm.example, alarmManager: MockAlarmManager())) {
         print("Preview: View dismissed.")
     }
 }
