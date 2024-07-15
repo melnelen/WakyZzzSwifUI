@@ -103,7 +103,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index].snoozeCount += 1
             
-            if alarms[index].snoozeCount > 2 {
+            if alarms[index].snoozeCount >= 2 {
                 playEvilSound(alarm: alarms[index])
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)

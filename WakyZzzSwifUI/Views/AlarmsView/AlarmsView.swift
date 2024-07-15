@@ -22,21 +22,7 @@ struct AlarmsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                // Iterate through alarms and display each one using AlarmRowView
-                ForEach(viewModel.alarms) { alarm in
-                    AlarmRowView(alarm: alarm, toggleEnabled: { isEnabled in
-                        viewModel.toggleEnabled(for: alarm, isEnabled: isEnabled)
-                    })
-                    .onTapGesture {
-                        // Set the selected alarm and show the edit alarm view
-                        viewModel.selectedAlarm = alarm
-                        viewModel.showingEditAlarmView = true
-                    }
-                }
-                // Handle deletion of alarms
-                .onDelete(perform: viewModel.deleteAlarm)
-            }
+            AlarmListView(viewModel: viewModel)
             // Set the title of the navigation bar
             .navigationTitle("Alarms")
             // Add buttons to the navigation bar
