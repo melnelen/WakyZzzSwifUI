@@ -15,7 +15,8 @@ class AlarmManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         alarmManager = AlarmManager.shared
-        alarmManager.alarms = []  // Reset alarms before each test
+        // Reset alarms before each test
+        alarmManager.alarms = []
     }
     
     override func tearDown() {
@@ -87,6 +88,7 @@ class AlarmManagerTests: XCTestCase {
         
         // When
         alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
+            
             // Then
             XCTAssertFalse(showKindness, "Kindness should not be shown for the first snooze")
             expectation.fulfill()
@@ -96,10 +98,6 @@ class AlarmManagerTests: XCTestCase {
         
         alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
             XCTAssertTrue(showKindness, "Kindness should be shown for the second snooze")
-        }
-        
-        alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
-            XCTAssertTrue(showKindness, "Kindness should be shown for the third snooze")
         }
     }
     

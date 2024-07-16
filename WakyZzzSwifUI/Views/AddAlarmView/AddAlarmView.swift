@@ -15,7 +15,6 @@ struct AddAlarmView: View {
 
     /// Initializes the view with a binding to the list of alarms and a binding to the presentation state.
     /// - Parameters:
-    ///   - alarms: A binding to the array of alarms.
     ///   - isPresented: A binding to the presentation state of the view.
     ///   - alarmManager: The alarm manager to handle alarm-related tasks, default is an instance of `AlarmManager`.
     init(alarms: Binding<[Alarm]>, isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
@@ -39,9 +38,7 @@ struct AddAlarmView: View {
             }
             .navigationTitle("Add Alarm")
             .navigationBarItems(trailing: CancelButton {
-                print("Cancel button pressed.")
                 presentationMode.wrappedValue.dismiss()
-                print("View should be dismissed.")
             })
         }
     }

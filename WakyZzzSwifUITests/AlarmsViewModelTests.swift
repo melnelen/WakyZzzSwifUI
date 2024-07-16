@@ -17,7 +17,8 @@ class AlarmsViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockAlarmManager = AlarmManager.shared
-        mockAlarmManager.alarms = []  // Reset alarms before each test
+        // Reset alarms before each test
+        mockAlarmManager.alarms = []
         mockNotificationManager = MockNotificationManager()
         viewModel = AlarmsViewModel(notificationManager: mockNotificationManager, alarmManager: mockAlarmManager)
     }
@@ -41,45 +42,55 @@ class AlarmsViewModelTests: XCTestCase {
     }
 
     func testScheduleTestAlarm() {
+        // Given
         let initialCount = viewModel.alarms.count
         
+        // When
         viewModel.scheduleTestAlarm()
         
+        // Then
         XCTAssertEqual(viewModel.alarms.count, initialCount + 1)
     }
 
     func testSnoozeAlarm() {
+        // Given
         let alarm = Alarm(time: Date(), repeatDays: [], isEnabled: true)
         viewModel.alarmManager.addAlarm(alarm)
         
+        // When
         viewModel.snoozeAlarm(alarm: alarm)
         
+        // Then
         XCTAssertEqual(viewModel.alarms.first?.snoozeCount, 1)
     }
     
     func testDeleteAlarm() {
+        // Given
         let alarm = Alarm(time: Date().addingTimeInterval(3600), repeatDays: [], isEnabled: true)
         mockAlarmManager.addAlarm(alarm)
         viewModel.alarms = mockAlarmManager.alarms
-        
         let initialCount = viewModel.alarms.count
         
-        
+        // When
         viewModel.deleteAlarm(at: IndexSet(integer: 0))
         
+        // Then
         XCTAssertEqual(mockAlarmManager.alarms.count, initialCount - 1)
         XCTAssertFalse(mockAlarmManager.alarms.contains(alarm))
     }
 
     func testToggleEnabled() {
+        // Given
         let alarm = Alarm(time: Date().addingTimeInterval(3600), repeatDays: [], isEnabled: true)
         mockAlarmManager.addAlarm(alarm)
         viewModel.alarms = mockAlarmManager.alarms
         XCTAssertTrue(viewModel.alarms.first!.isEnabled)
         
+        // When
         viewModel.toggleEnabled(for: alarm, isEnabled: false)
         viewModel.alarms = mockAlarmManager.alarms
         
+        // Then
         XCTAssertFalse(viewModel.alarms.first!.isEnabled)
         
         viewModel.toggleEnabled(for: alarm, isEnabled: true)
@@ -89,9 +100,11 @@ class AlarmsViewModelTests: XCTestCase {
     }
 
     func testAlarmAlert() {
+        // Given
         let alarmID = UUID().uuidString
         NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: alarmID)
         
+        // Then
         XCTAssertEqual(viewModel.activeAlarmID, alarmID)
         XCTAssertTrue(viewModel.showingAlarmAlert)
     }
