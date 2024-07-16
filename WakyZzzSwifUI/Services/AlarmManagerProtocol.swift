@@ -13,7 +13,7 @@ protocol AlarmManagerProtocol {
 
     func addAlarm(_ alarm: Alarm)
     func removeAlarm(_ alarm: Alarm)
-    func updateAlarm(alarm: Alarm, isEnabled: Bool)
+    func updateAlarm(alarm: Alarm)
     func getAlarm(by id: UUID?) -> Alarm?
     func snoozeAlarm(alarm: Alarm, completion: @escaping (Bool) -> Void)
 }

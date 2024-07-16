@@ -42,6 +42,6 @@ class EditAlarmViewModel: ObservableObject {
         alarm.time = time
         alarm.repeatDays = repeatDays
         alarm.isEnabled = isEnabled
-        alarmManager.updateAlarm(alarm: alarm, isEnabled: isEnabled)
+        alarmManager.updateAlarm(alarm: alarm)
     }
 }

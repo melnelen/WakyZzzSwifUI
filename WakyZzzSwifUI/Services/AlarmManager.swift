@@ -36,15 +36,15 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
-    func updateAlarm(alarm: Alarm, isEnabled: Bool) {
+    func updateAlarm(alarm: Alarm) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }), isValidDate(alarm.time) {
             alarms[index] = alarm
             sortAlarms()
-            if isEnabled {
-                enableAlarm(alarm: alarm)
-            } else {
-                disableAlarm(alarm: alarm)
-            }
+//            if isEnabled {
+//                enableAlarm(alarm: alarm)
+//            } else {
+//                disableAlarm(alarm: alarm)
+//            }
             print("Updated alarm: \(alarm)")
         }
     }

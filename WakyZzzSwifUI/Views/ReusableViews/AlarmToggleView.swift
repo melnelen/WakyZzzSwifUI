@@ -14,6 +14,9 @@ struct AlarmToggleView: View {
         Toggle(isOn: $isEnabled) {
             Text(isEnabled ? "Enabled" : "Disabled")
         }
+        .onChange(of: isEnabled) { _, newValue in
+            isEnabled = newValue
+        }
     }
 }
 

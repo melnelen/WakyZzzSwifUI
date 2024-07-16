@@ -83,7 +83,7 @@ class AlarmsViewModel: ObservableObject {
     func toggleEnabled(for alarm: Alarm, isEnabled: Bool) {
         var updatedAlarm = alarm
         updatedAlarm.isEnabled = isEnabled
-        alarmManager.updateAlarm(alarm: updatedAlarm, isEnabled: updatedAlarm.isEnabled)
+        alarmManager.updateAlarm(alarm: updatedAlarm)
         updateAlarms()
     }
     

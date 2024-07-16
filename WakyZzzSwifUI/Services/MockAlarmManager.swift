@@ -11,7 +11,10 @@ class MockAlarmManager: AlarmManagerProtocol {
     static let shared = MockAlarmManager()
     
     var alarms: [Alarm] = []
-    var randomActsOfKindness: [String] = RandomActsOfKindnessLoader.loadRandomActsOfKindness()
+    var randomActsOfKindness: [String] = ["Be kind", "Help someone"]
+    
+    var didUpdateAlarm = false
+    var updatedAlarm: Alarm?
     
     func addAlarm(_ alarm: Alarm) {
         alarms.append(alarm)
@@ -23,10 +26,11 @@ class MockAlarmManager: AlarmManagerProtocol {
         }
     }
     
-    func updateAlarm(alarm: Alarm, isEnabled: Bool) {
+    func updateAlarm(alarm: Alarm) {
+        didUpdateAlarm = true
+        updatedAlarm = alarm
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index] = alarm
-            alarms[index].isEnabled = isEnabled
         }
     }
     
@@ -38,7 +42,7 @@ class MockAlarmManager: AlarmManagerProtocol {
     func snoozeAlarm(alarm: Alarm, completion: @escaping (Bool) -> Void) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index].snoozeCount += 1
-            if alarms[index].snoozeCount > 2 {
+            if alarms[index].snoozeCount >= 2 {
                 completion(true)
             } else {
                 completion(false)
