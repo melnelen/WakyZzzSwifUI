@@ -13,7 +13,7 @@ class AlarmsViewModelTests: XCTestCase {
     var viewModel: AlarmsViewModel!
     var mockAlarmManager: AlarmManagerProtocol!
     var mockNotificationManager: MockNotificationManager!
-
+    
     override func setUp() {
         super.setUp()
         mockAlarmManager = AlarmManager.shared
@@ -22,14 +22,14 @@ class AlarmsViewModelTests: XCTestCase {
         mockNotificationManager = MockNotificationManager()
         viewModel = AlarmsViewModel(notificationManager: mockNotificationManager, alarmManager: mockAlarmManager)
     }
-
+    
     override func tearDown() {
         viewModel = nil
         mockAlarmManager = nil
         mockNotificationManager = nil
         super.tearDown()
     }
-
+    
     func testInitialState() {
         XCTAssertEqual(viewModel.alarms.count, 0)
         XCTAssertFalse(viewModel.showingAddAlarmView)
@@ -40,7 +40,18 @@ class AlarmsViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showRandomActOfKindness)
         XCTAssertEqual(viewModel.randomActTask, "Do something kind!")
     }
-
+    
+    //    func testScheduleTestAlarm() {
+    //        // Given
+    //        let initialCount = viewModel.alarms.count
+    //
+    //        // When
+    //        viewModel.scheduleTestAlarm()
+    //
+    //        // Then
+    //        XCTAssertEqual(viewModel.alarms.count, initialCount + 1)
+    //    }
+    
     func testScheduleTestAlarm() {
         // Given
         let initialCount = viewModel.alarms.count
@@ -48,10 +59,34 @@ class AlarmsViewModelTests: XCTestCase {
         // When
         viewModel.scheduleTestAlarm()
         
-        // Then
         XCTAssertEqual(viewModel.alarms.count, initialCount + 1)
+        
+        // Then
+        let expectation = XCTestExpectation(description: "Wait for alarm to be triggered")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            XCTAssertTrue(self.viewModel.showingAlarmAlert)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3.0)
     }
-
+    
+    func testTriggerTestAlarmNotification() {
+        // Given
+        let alarm = Alarm(time: Date(), repeatDays: [], isEnabled: true)
+        
+        // When
+        viewModel.alarmManager.addAlarm(alarm)
+        
+        // Then
+        let expectation = XCTestExpectation(description: "Wait for test alarm to be triggered")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.viewModel.triggerTestAlarmNotification(alarm: alarm)
+            XCTAssertTrue(self.viewModel.showingAlarmAlert)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3.0)
+    }
+    
     func testSnoozeAlarm() {
         // Given
         let alarm = Alarm(time: Date(), repeatDays: [], isEnabled: true)
@@ -78,7 +113,7 @@ class AlarmsViewModelTests: XCTestCase {
         XCTAssertEqual(mockAlarmManager.alarms.count, initialCount - 1)
         XCTAssertFalse(mockAlarmManager.alarms.contains(alarm))
     }
-
+    
     func testToggleEnabled() {
         // Given
         let alarm = Alarm(time: Date().addingTimeInterval(3600), repeatDays: [], isEnabled: true)
@@ -98,7 +133,7 @@ class AlarmsViewModelTests: XCTestCase {
         
         XCTAssertTrue(viewModel.alarms.first!.isEnabled)
     }
-
+    
     func testAlarmAlert() {
         // Given
         let alarmID = UUID().uuidString

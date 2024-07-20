@@ -23,7 +23,6 @@
 		19D56ED52C2B1A7300AA6811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED42C2B1A7300AA6811 /* Assets.xcassets */; };
 		19D56ED82C2B1A7300AA6811 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19D56ED72C2B1A7300AA6811 /* Preview Assets.xcassets */; };
 		19D56EEC2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */; };
-		19D56EEE2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */; };
 		19D56EFF2C2B1B6B00AA6811 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */; };
 		19D56F012C2B1B9100AA6811 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F002C2B1B9100AA6811 /* Action.swift */; };
 		19D56F032C2B1BB900AA6811 /* AlarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56F022C2B1BB900AA6811 /* AlarmsView.swift */; };
@@ -85,7 +84,6 @@
 		19D56EDD2C2B1A7300AA6811 /* WakyZzzSwifUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakyZzzSwifUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56EE72C2B1A7300AA6811 /* WakyZzzSwifUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WakyZzzSwifUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIUITests.swift; sourceTree = "<group>"; };
-		19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakyZzzSwifUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		19D56EFE2C2B1B6B00AA6811 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		19D56F002C2B1B9100AA6811 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		19D56F022C2B1BB900AA6811 /* AlarmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsView.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				19D56EEB2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift */,
-				19D56EED2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift */,
 			);
 			path = WakyZzzSwifUIUITests;
 			sourceTree = "<group>";
@@ -476,7 +473,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19D56EEE2C2B1A7300AA6811 /* WakyZzzSwifUIUITestsLaunchTests.swift in Sources */,
 				19D56EEC2C2B1A7300AA6811 /* WakyZzzSwifUIUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

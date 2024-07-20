@@ -6,36 +6,88 @@
 //
 
 import XCTest
+import SwiftUI
+@testable import WakyZzzSwifUI
 
 final class WakyZzzSwifUIUITests: XCTestCase {
-
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+        
+        
+        
+        // Delete all alarms created during the test
+        let alarmsList = app.tables
+        
+        if alarmsList.cells.count > 0 {
+            //            alarmsList.cells.buttons["Delete"].tap()
+            //            let deleteButton = alarmsList.buttons["Delete"]
+            //            if deleteButton.exists {
+            //                deleteButton.tap()
+            //            }
         }
+    }
+    
+    func testAlarmAndDoKindness() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        // MARK: Interactive Elements
+        let testAlarmButton = app.buttons["Schedule a test alarm"]
+        let alert = app.alerts["Alarm"]
+        let alertSnoozeButton = alert.scrollViews.otherElements.buttons["Snooze"]
+        let completeTaskButton = app.buttons["Complete Task"]
+        let kindnessMessage = app.staticTexts["Well done! Keep spreading kindness."]
+        
+        testAlarmButton.tap()
+        
+        waitForElementToAppear(alert)
+        alertSnoozeButton.tap()
+        
+        waitForElementToAppear(alert)
+        alertSnoozeButton.tap()
+        
+        waitForElementToAppear(completeTaskButton)
+        completeTaskButton.tap()
+        
+        waitForElementToAppear(kindnessMessage)
+        XCTAssertEqual(kindnessMessage.label, "Well done! Keep spreading kindness.")
+    }
+    
+    func testAlarmAndDoKindnessLater() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        // MARK: Interactive Elements
+        let testAlarmButton = app.buttons["Schedule a test alarm"]
+        let alert = app.alerts["Alarm"]
+        let alertSnoozeButton = alert.scrollViews.otherElements.buttons["Snooze"]
+        let doItLaterButton = app.buttons["Promise to Do It Later"]
+        let kindnessMessage = app.staticTexts["Well done! Keep spreading kindness."]
+        
+        testAlarmButton.tap()
+        
+        waitForElementToAppear(alert)
+        alertSnoozeButton.tap()
+        
+        waitForElementToAppear(alert)
+        alertSnoozeButton.tap()
+        
+        waitForElementToAppear(doItLaterButton)
+        doItLaterButton.tap()
+        XCTAssertFalse(kindnessMessage.exists)
+    }
+    
+    private func waitForElementToAppear(_ element: XCUIElement) {
+        let existsPredicate = NSPredicate(format: "exists == true")
+        let interval: TimeInterval = 10
+        
+        expectation(for: existsPredicate, evaluatedWith: element, handler: nil)
+        waitForExpectations(timeout: interval, handler: nil)
     }
 }

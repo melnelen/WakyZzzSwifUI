@@ -68,6 +68,31 @@ class AlarmsViewModel: ObservableObject {
         alarmManager.addAlarm(testAlarm)
         updateAlarms()
         print("Scheduled test alarm for 1 second later with ID: \(testAlarm.id)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.triggerTestAlarmNotification(alarm: testAlarm)
+        }
+    }
+    
+    func triggerTestAlarmNotification(alarm: Alarm) {
+        if alarm.snoozeCount <= 2 {
+            NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: alarm.id.uuidString)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.incrementSnoozeCountAndTrigger(alarm: alarm)
+            }
+        } else {
+            NotificationCenter.default.post(name: Notification.Name("ShowRandomActOfKindnessAlert"), object: alarm)
+            if let index = self.alarms.firstIndex(where: { $0.id == alarm.id }) {
+                self.alarms[index].snoozeCount = 0
+            }
+        }
+    }
+    
+    private func incrementSnoozeCountAndTrigger(alarm: Alarm) {
+        if let index = self.alarms.firstIndex(where: { $0.id == alarm.id }) {
+            self.alarms[index].snoozeCount += 1
+            self.triggerTestAlarmNotification(alarm: self.alarms[index])
+        }
     }
     
     func snoozeAlarm(alarm: Alarm) {
