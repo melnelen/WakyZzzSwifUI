@@ -45,6 +45,7 @@
 		19D74AD32C2F630D000D32FE /* SaveChangesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */; };
 		19D74AD52C2F638C000D32FE /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D74AD42C2F638C000D32FE /* CancelButton.swift */; };
 		19D74AD82C3DCF55000D32FE /* sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 19D74AD72C3DCF55000D32FE /* sound.mp3 */; };
+		19D7DC042C4C2F8E007C98D2 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D7DC032C4C2F8E007C98D2 /* DeleteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveChangesButton.swift; sourceTree = "<group>"; };
 		19D74AD42C2F638C000D32FE /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		19D74AD72C3DCF55000D32FE /* sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sound.mp3; sourceTree = "<group>"; };
+		19D7DC032C4C2F8E007C98D2 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +282,7 @@
 			children = (
 				19D56F062C2B44AC00AA6811 /* EditAlarmView.swift */,
 				19D74AD22C2F630D000D32FE /* SaveChangesButton.swift */,
+				19D7DC032C4C2F8E007C98D2 /* DeleteButton.swift */,
 			);
 			path = EditAlarmView;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			files = (
 				19D56F012C2B1B9100AA6811 /* Action.swift in Sources */,
 				19D74ACC2C2F50D9000D32FE /* AddAlarmButton.swift in Sources */,
+				19D7DC042C4C2F8E007C98D2 /* DeleteButton.swift in Sources */,
 				19D74AD32C2F630D000D32FE /* SaveChangesButton.swift in Sources */,
 				19D74AB82C2F09C3000D32FE /* AddAlarmViewModel.swift in Sources */,
 				19D74ABE2C2F42E3000D32FE /* AlarmListView.swift in Sources */,

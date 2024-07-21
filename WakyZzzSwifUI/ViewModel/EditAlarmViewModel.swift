@@ -44,4 +44,8 @@ class EditAlarmViewModel: ObservableObject {
         alarm.isEnabled = isEnabled
         alarmManager.updateAlarm(alarm: alarm)
     }
+    
+    func deleteAlarm() {
+            alarmManager.removeAlarm(alarm)
+        }
 }

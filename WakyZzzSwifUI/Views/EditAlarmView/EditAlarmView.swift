@@ -11,7 +11,7 @@ import SwiftUI
 struct EditAlarmView: View {
     @ObservedObject var viewModel: EditAlarmViewModel
     @Environment(\.presentationMode) var presentationMode
-
+    
     /// Initializes the view with the necessary parameters.
     /// - Parameters:
     ///   - alarms: The binding to the list of alarms.
@@ -27,9 +27,14 @@ struct EditAlarmView: View {
                 AlarmTimePickerView(time: $viewModel.time)
                 RepeatDaysSectionView(repeatDays: $viewModel.repeatDays)
                 AlarmToggleView(isEnabled: $viewModel.isEnabled)
-                SaveChangesButton(viewModel: viewModel, onDismiss: {
-                    presentationMode.wrappedValue.dismiss()
-                })
+                Section(header: Text("Actions")) {
+                    SaveChangesButton(viewModel: viewModel, onDismiss: {
+                        presentationMode.wrappedValue.dismiss()
+                    })
+                    DeleteButton(viewModel: viewModel, onDismiss: {
+                        presentationMode.wrappedValue.dismiss()
+                    })
+                }
             }
             .navigationTitle("Edit Alarm")
             .navigationBarItems(trailing: CancelButton {
