@@ -42,7 +42,6 @@ class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("Notification will present: \(notification.request.identifier)")
         completionHandler([.banner, .sound])
     }
     
@@ -54,7 +53,6 @@ class NotificationManager: NSObject, ObservableObject, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("Notification received with identifier: \(response.notification.request.identifier)")
         
         if let task = response.notification.request.content.userInfo["task"] as? String {
             randomActTask = task

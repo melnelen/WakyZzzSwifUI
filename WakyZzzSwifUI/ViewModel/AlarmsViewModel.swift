@@ -76,10 +76,9 @@ class AlarmsViewModel: ObservableObject {
         let testAlarm = Alarm(time: testAlarmTime, repeatDays: [], isEnabled: true)
         alarmManager.addAlarm(testAlarm)
         updateAlarms()
-        print("Scheduled test alarm for 1 second later with ID: \(testAlarm.id)")
         
-        // Trigger the test alarm notification after 1 second
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        // Trigger the test alarm notification after 3 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.triggerTestAlarmNotification(alarm: testAlarm)
         }
     }
@@ -89,7 +88,8 @@ class AlarmsViewModel: ObservableObject {
     func triggerTestAlarmNotification(alarm: Alarm) {
         if alarm.snoozeCount <= 2 {
             NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: alarm.id.uuidString)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            // Trigger the test alarm notification after 3 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.incrementSnoozeCountAndTrigger(alarm: alarm)
             }
         } else {
