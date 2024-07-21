@@ -41,34 +41,16 @@ class AlarmsViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.randomActTask, "Do something kind!")
     }
     
-        func testScheduleTestAlarm() {
-            // Given
-            let initialCount = viewModel.alarms.count
-    
-            // When
-            viewModel.scheduleTestAlarm()
-    
-            // Then
-            XCTAssertEqual(viewModel.alarms.count, initialCount + 1)
-        }
-    
-//    func testScheduleTestAlarm() {
-//        // Given
-//        let initialCount = viewModel.alarms.count
-//        
-//        // When
-//        viewModel.scheduleTestAlarm()
-//        
-//        XCTAssertEqual(viewModel.alarms.count, initialCount + 1)
-//        
-//        // Then
-//        let expectation = XCTestExpectation(description: "Wait for alarm to be triggered")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//            XCTAssertTrue(self.viewModel.showingAlarmAlert)
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 3.0)
-//    }
+    func testScheduleTestAlarm() {
+        // Given
+        let initialCount = viewModel.alarms.count
+        
+        // When
+        viewModel.scheduleTestAlarm()
+        
+        // Then
+        XCTAssertEqual(viewModel.alarms.count, initialCount + 1)
+    }
     
     func testTriggerTestAlarmNotification() {
         // Given

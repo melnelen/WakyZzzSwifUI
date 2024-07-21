@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// ViewModel for editing an existing alarm.
 class EditAlarmViewModel: ObservableObject {
     @Published var alarm: Alarm
     @Published var time: Date
@@ -15,6 +16,10 @@ class EditAlarmViewModel: ObservableObject {
     
     var alarmManager: AlarmManagerProtocol
     
+    /// Initializes the ViewModel with an alarm and an optional alarm manager.
+    /// - Parameters:
+    ///   - alarm: The alarm to be edited.
+    ///   - alarmManager: The alarm manager to handle alarm-related tasks, defaults to the shared instance.
     init(alarm: Alarm, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.alarmManager = alarmManager
         
@@ -22,8 +27,8 @@ class EditAlarmViewModel: ObservableObject {
         self.alarm = alarm
         self.repeatDays = alarm.repeatDays
         self.isEnabled = alarm.isEnabled
-
-        // Then, handle the time initialization
+        
+        // Handle the time initialization
         if alarm.time <= Date.distantPast {
             var components = DateComponents()
             components.hour = 8
@@ -38,6 +43,7 @@ class EditAlarmViewModel: ObservableObject {
         print("Initialized EditAlarmViewModel with time: \(self.time)")
     }
     
+    /// Saves the changes made to the alarm.
     func saveChanges() {
         alarm.time = time
         alarm.repeatDays = repeatDays
@@ -45,7 +51,8 @@ class EditAlarmViewModel: ObservableObject {
         alarmManager.updateAlarm(alarm: alarm)
     }
     
+    /// Deletes the current alarm.
     func deleteAlarm() {
-            alarmManager.removeAlarm(alarm)
-        }
+        alarmManager.removeAlarm(alarm)
+    }
 }

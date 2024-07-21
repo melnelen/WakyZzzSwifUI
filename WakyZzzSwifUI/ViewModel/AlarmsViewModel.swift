@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// ViewModel for managing the alarms and their interactions within the app.
 class AlarmsViewModel: ObservableObject {
     @Published var alarms: [Alarm] = []
     @Published var showingAddAlarmView = false
@@ -20,6 +21,7 @@ class AlarmsViewModel: ObservableObject {
     var notificationManager: NotificationManager
     var alarmManager: AlarmManagerProtocol
     
+    /// Computed property for generating an alert when an alarm is triggered.
     var alarmAlert: Alert {
         Alert(
             title: Text("Alarm"),
@@ -37,6 +39,10 @@ class AlarmsViewModel: ObservableObject {
         )
     }
     
+    /// Initializes the ViewModel with notification and alarm managers.
+    /// - Parameters:
+    ///   - notificationManager: The notification manager to handle notifications.
+    ///   - alarmManager: The alarm manager to handle alarm-related tasks.
     init(notificationManager: NotificationManager, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.notificationManager = notificationManager
         self.alarmManager = alarmManager
@@ -53,6 +59,8 @@ class AlarmsViewModel: ObservableObject {
         }
     }
     
+    /// Deletes alarms at the specified offsets.
+    /// - Parameter offsets: The index set of alarms to delete.
     func deleteAlarm(at offsets: IndexSet) {
         offsets.forEach { index in
             let alarm = alarms[index]
@@ -61,6 +69,7 @@ class AlarmsViewModel: ObservableObject {
         updateAlarms()
     }
     
+    /// Schedules a test alarm for 1 second later.
     func scheduleTestAlarm() {
         let now = Date()
         let testAlarmTime = Calendar.current.date(byAdding: .second, value: 1, to: now) ?? now
@@ -69,15 +78,18 @@ class AlarmsViewModel: ObservableObject {
         updateAlarms()
         print("Scheduled test alarm for 1 second later with ID: \(testAlarm.id)")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        // Trigger the test alarm notification after 1 second
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.triggerTestAlarmNotification(alarm: testAlarm)
         }
     }
     
+    /// Triggers a test alarm notification.
+    /// - Parameter alarm: The alarm to trigger.
     func triggerTestAlarmNotification(alarm: Alarm) {
         if alarm.snoozeCount <= 2 {
             NotificationCenter.default.post(name: Notification.Name("AlarmTriggered"), object: alarm.id.uuidString)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.incrementSnoozeCountAndTrigger(alarm: alarm)
             }
         } else {
@@ -88,6 +100,8 @@ class AlarmsViewModel: ObservableObject {
         }
     }
     
+    /// Increments the snooze count and triggers the alarm notification again.
+    /// - Parameter alarm: The alarm to snooze and trigger.
     private func incrementSnoozeCountAndTrigger(alarm: Alarm) {
         if let index = self.alarms.firstIndex(where: { $0.id == alarm.id }) {
             self.alarms[index].snoozeCount += 1
@@ -95,6 +109,8 @@ class AlarmsViewModel: ObservableObject {
         }
     }
     
+    /// Snoozes the specified alarm.
+    /// - Parameter alarm: The alarm to snooze.
     func snoozeAlarm(alarm: Alarm) {
         alarmManager.snoozeAlarm(alarm: alarm) { showKindness in
             if showKindness {
@@ -105,6 +121,10 @@ class AlarmsViewModel: ObservableObject {
         updateAlarms()
     }
     
+    /// Toggles the enabled state of the specified alarm.
+    /// - Parameters:
+    ///   - alarm: The alarm to toggle.
+    ///   - isEnabled: The new enabled state.
     func toggleEnabled(for alarm: Alarm, isEnabled: Bool) {
         var updatedAlarm = alarm
         updatedAlarm.isEnabled = isEnabled
@@ -112,6 +132,7 @@ class AlarmsViewModel: ObservableObject {
         updateAlarms()
     }
     
+    /// Updates the list of alarms to reflect the current state in the alarm manager.
     func updateAlarms() {
         self.alarms = alarmManager.alarms
     }

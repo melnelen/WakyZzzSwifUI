@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// ViewModel for adding a new alarm.
 class AddAlarmViewModel: ObservableObject {
     @Published var time: Date
     @Published var repeatDays: [String]
@@ -15,6 +16,10 @@ class AddAlarmViewModel: ObservableObject {
     var isPresented: Binding<Bool>
     var alarmManager: AlarmManagerProtocol
     
+    /// Initializes the ViewModel with a binding to the presentation state and an optional alarm manager.
+    /// - Parameters:
+    ///   - isPresented: Binding to the boolean that controls the presentation of the add alarm view.
+    ///   - alarmManager: The alarm manager to handle alarm-related tasks, defaults to the shared instance.
     init(isPresented: Binding<Bool>, alarmManager: AlarmManagerProtocol = AlarmManager.shared) {
         self.isPresented = isPresented
         self.alarmManager = alarmManager
@@ -35,6 +40,7 @@ class AddAlarmViewModel: ObservableObject {
         }
     }
     
+    /// Adds a new alarm with the specified time, repeat days, and enabled state.
     func addAlarm() {
         let calendar = Calendar.current
         let currentDate = Date()

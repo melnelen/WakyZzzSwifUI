@@ -7,13 +7,19 @@
 
 import SwiftUI
 
+/// A view to display a random act of kindness prompt to the user.
 struct RandomActOfKindnessView: View {
+    /// The view model managing the state and behavior of the random act of kindness.
     @StateObject private var viewModel = RandomActOfKindnessViewModel()
+    /// A binding to control the visibility of this view.
     @Binding var showingView: Bool
+    /// The task to be displayed for the random act of kindness.
     let task: String
+    /// A state variable to control the display of confetti animation.
     @State private var showConfetti = false
+    /// A state variable to control the display of a confirmation message.
     @State private var showMessage = false
-    
+
     var body: some View {
         VStack(spacing: 20) {
             Text("Random Act of Kindness")
@@ -32,6 +38,7 @@ struct RandomActOfKindnessView: View {
                     showConfetti = true
                     showMessage = true
                 }
+                // Hide the view and confetti after a delay
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                     withAnimation {
                         showingView = false
@@ -55,6 +62,7 @@ struct RandomActOfKindnessView: View {
         }
         .padding()
         .overlay(
+            // Overlay for confetti animation
             ZStack {
                 if showConfetti {
                     ForEach(0..<50, id: \.self) { i in
@@ -69,6 +77,7 @@ struct RandomActOfKindnessView: View {
             }
         )
         .overlay(
+            // Overlay for confirmation message
             ConfirmationMessageView(showMessage: $showMessage, message: "Well done! Keep spreading kindness.")
         )
     }

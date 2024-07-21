@@ -8,60 +8,70 @@
 import SwiftUI
 import UserNotifications
 
+/// `AlarmManager` is a class that manages alarm objects and conforms to the `AlarmManagerProtocol`.
+/// It handles the creation, updating, deletion, and scheduling of alarms.
 class AlarmManager: ObservableObject, AlarmManagerProtocol {
+    // Singleton instance of `AlarmManager`
     static let shared = AlarmManager()
     
+    /// Published property to store the list of alarms, which automatically saves alarms when updated.
     @Published var alarms: [Alarm] = [] {
         didSet {
             saveAlarms()
         }
     }
     
+    /// List of random acts of kindness loaded from a loader.
     var randomActsOfKindness: [String] = RandomActsOfKindnessLoader.loadRandomActsOfKindness()
     
     private init() {
+        // Load alarms when the instance is initialized
         loadAlarms()
     }
     
+    /// Key for storing alarms in UserDefaults
     private let userDefaultsKey = "alarms"
     
+    /// Adds a new alarm, sorts the alarms, and schedules the alarm.
+    /// - Parameter alarm: The alarm to be added.
     func addAlarm(_ alarm: Alarm) {
         if isValidDate(alarm.time) {
             alarms.append(alarm)
             sortAlarms()
             scheduleAlarm(alarm: alarm)
-            print("Added alarm: \(alarm)")
         } else {
             print("Invalid date for alarm: \(alarm.time)")
         }
     }
     
+    /// Updates an existing alarm and sorts the alarms.
+    /// - Parameter alarm: The alarm to be updated.
     func updateAlarm(alarm: Alarm) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }), isValidDate(alarm.time) {
             alarms[index] = alarm
             sortAlarms()
-//            if isEnabled {
-//                enableAlarm(alarm: alarm)
-//            } else {
-//                disableAlarm(alarm: alarm)
-//            }
-            print("Updated alarm: \(alarm)")
         }
     }
     
+    /// Removes an alarm from the list and disables it.
+    /// - Parameter alarm: The alarm to be removed.
     func removeAlarm(_ alarm: Alarm) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             disableAlarm(alarm: alarm)
             alarms.remove(at: index)
-            print("Removed alarm: \(alarm)")
         }
     }
     
+    /// Retrieves an alarm by its unique identifier.
+    /// - Parameter id: The UUID of the alarm.
+    /// - Returns: The alarm if found, otherwise nil.
     func getAlarm(by id: UUID?) -> Alarm? {
         guard let id = id else { return nil }
         return alarms.first(where: { $0.id == id })
     }
     
+    /// Schedules a notification for an alarm.
+    /// - Parameter alarm: The alarm to be scheduled.
     func scheduleAlarm(alarm: Alarm) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
@@ -87,18 +97,25 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
+    /// Disables a scheduled alarm.
+    /// - Parameter alarm: The alarm to be disabled.
     func disableAlarm(alarm: Alarm) {
         let center = UNUserNotificationCenter.current()
         let identifier = "\(alarm.id)"
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
-        print("Disabled alarm: \(alarm)")
     }
     
+    /// Enables a previously scheduled alarm.
+    /// - Parameter alarm: The alarm to be enabled.
     func enableAlarm(alarm: Alarm) {
         disableAlarm(alarm: alarm)
         scheduleAlarm(alarm: alarm)
     }
     
+    /// Snoozes an alarm and increments its snooze count. If the snooze count reaches 2, it triggers a random act of kindness alert.
+    /// - Parameters:
+    ///   - alarm: The alarm to be snoozed.
+    ///   - completion: Completion handler that indicates whether to show a random act of kindness.
     func snoozeAlarm(alarm: Alarm, completion: @escaping (Bool) -> Void) {
         if let index = alarms.firstIndex(where: { $0.id == alarm.id }) {
             alarms[index].snoozeCount += 1
@@ -131,12 +148,16 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
+    /// Validates if a date is valid (year is greater than 1).
+    /// - Parameter date: The date to be validated.
+    /// - Returns: True if the date is valid, otherwise false.
     func isValidDate(_ date: Date) -> Bool {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year], from: date)
         return components.year! > 1
     }
     
+    /// Saves the current list of alarms to UserDefaults.
     func saveAlarms() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(alarms) {
@@ -144,6 +165,7 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
+    /// Loads the list of alarms from UserDefaults.
     func loadAlarms() {
         if let savedAlarms = UserDefaults.standard.data(forKey: userDefaultsKey) {
             let decoder = JSONDecoder()
@@ -154,6 +176,8 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
+    /// Plays an "evil" sound and schedules a notification to perform a random act of kindness.
+    /// - Parameter alarm: The alarm triggering the action.
     func playEvilSound(alarm: Alarm) {
         let content = UNMutableNotificationContent()
         content.title = "Evil Alarm"
@@ -179,12 +203,14 @@ class AlarmManager: ObservableObject, AlarmManagerProtocol {
         }
     }
     
+    /// Sorts the list of alarms by time.
     func sortAlarms() {
         alarms.sort { $0.time.timeInMinutes < $1.time.timeInMinutes }
     }
 }
 
 extension Date {
+    // Extension property to get the time of the date in minutes.
     var timeInMinutes: Int {
         return Calendar.current.component(.hour, from: self) * 60
         + Calendar.current.component(.minute, from: self)

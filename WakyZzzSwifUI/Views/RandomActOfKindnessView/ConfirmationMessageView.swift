@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+/// A view that displays a confirmation message with a fade-out animation.
 struct ConfirmationMessageView: View {
+    /// Binding to control the visibility of the confirmation message.
     @Binding var showMessage: Bool
+    /// The message to be displayed.
     let message: String
     
     var body: some View {
@@ -21,6 +24,7 @@ struct ConfirmationMessageView: View {
                 .cornerRadius(10)
                 .transition(.opacity)
                 .onAppear {
+                    // Schedule hiding the message after 4 seconds
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         withAnimation {
                             showMessage = false
